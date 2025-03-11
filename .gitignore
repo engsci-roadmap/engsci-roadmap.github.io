@@ -1,1 +1,6 @@
 .env
+
+rag_env/
+# pip list: see list of installed packages
+# pip freeze > requirements.txt: save list of installed packages
+# deactivate: exit virtual environment
