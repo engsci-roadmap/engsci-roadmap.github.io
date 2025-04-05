@@ -1,0 +1,22 @@
+{
+  "courseCode": "MAT292",
+  "courseName": "Ordinary Differential Equations",
+  "cheatsheet": {
+    "title": "Cheatsheet",
+    "file": "cheatsheet.pdf"
+  },
+  "processSheet": {
+    "title": "Process Sheet",
+    "file": "process-sheet.pdf"
+  },
+  "externalLinks": [
+    {
+      "title": "Khan Academy: Forces and Newton's laws of motion",
+      "url": "https://www.khanacademy.org/science/physics/forces-newtons-laws"
+    },
+    {
+      "title": "MIT OpenCourseWare: Mechanics of Materials",
+      "url": "https://ocw.mit.edu/courses/materials-science-and-engineering/3-11-mechanics-of-materials-fall-1999/"
+    }
+  ]
+}

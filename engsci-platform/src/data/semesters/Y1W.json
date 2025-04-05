@@ -1,0 +1,35 @@
+[
+  {
+    "code": "ECE159",
+    "title": "Fundamentals of Electric Circuits",
+    "roadmap": "roadmaps/ECE159.json",
+    "resources": "resources/ECE159/index.json",
+    "problems": "problems/ECE159/index.json"
+  },
+  {
+    "code": "ESC190",
+    "title": "Computer Algorithms and Data Structures",
+    "resources": "resources/ESC190/index.json"
+  },
+  {
+    "code": "ESC195",
+    "title": "Calculus II",
+    "roadmap": "roadmaps/ESC195.json",
+    "resources": "resources/ESC195/index.json",
+    "problems": "problems/ESC195/index.json"
+  },
+  {
+    "code": "MAT185",
+    "title": "Linear Algebra",
+    "roadmap": "roadmaps/MAT185.json",
+    "resources": "resources/MAT185/index.json",
+    "problems": "problems/MAT185/index.json"
+  },
+  {
+    "code": "MSE160",
+    "title": "Molecules and Materials",
+    "roadmap": "roadmaps/MSE160.json",
+    "resources": "resources/MSE160/index.json",
+    "problems": "problems/MSE160/index.json"
+  }
+]

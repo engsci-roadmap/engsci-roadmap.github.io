@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1743133796.11761 "/Users/hanheelee/Desktop/engsci-study-tool/notes/year2/ece259/formula_sheet/ece259_formula_sheet.tex" "ece259_formula_sheet.pdf" "ece259_formula_sheet" 1743133800.04163 0
-  "/Users/hanheelee/Desktop/engsci-study-tool/notes/year2/ece259/formula_sheet/ece259_formula_sheet.tex" 1743133792.25763 1856 3bf08350ba9de1bd5e92ae821e8a6893 ""
+["pdflatex"] 1743700301.10941 "/Users/hanheelee/Desktop/engsci-cheatcode/notes/year2/ece259/formula_sheet/ece259_formula_sheet.tex" "ece259_formula_sheet.pdf" "ece259_formula_sheet" 1743700304.57923 0
+  "/Users/hanheelee/Desktop/engsci-cheatcode/notes/year2/ece259/formula_sheet/ece259_formula_sheet.tex" 1743700295.42982 2710 68f47b198c8ca7e1bce22163990a2ca1 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1202520719 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1202520719 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
@@ -322,9 +322,9 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1739067315.7189 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1739067010 8221435 a1e3d89194b507b879d58628e21da9df ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "ece259_formula_sheet.aux" 1743133799.66252 1129 c8f545014c8a055ffcfedb38ebff7619 "pdflatex"
-  "ece259_formula_sheet.out" 1743133799.66397 987 1b7da7c8dc03072d683f70ca5f0ac38b "pdflatex"
-  "ece259_formula_sheet.tex" 1743133792.25763 1856 3bf08350ba9de1bd5e92ae821e8a6893 ""
+  "ece259_formula_sheet.aux" 1743700304.22694 2014 3a664e8a2c3740d4b1ecdba8d943d13d "pdflatex"
+  "ece259_formula_sheet.out" 1743700304.22849 1715 c5c690c10164861a1e8b093fb6ffae3f "pdflatex"
+  "ece259_formula_sheet.tex" 1743700295.42982 2710 68f47b198c8ca7e1bce22163990a2ca1 ""
   "style.sty" 1743132467.81591 8166 e40cba66fcf97f52c4c0baf1070ffb56 ""
   (generated)
   "ece259_formula_sheet.aux"
