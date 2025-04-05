@@ -29,16 +29,20 @@ const CourseCard = ({ course }: CourseCardProps) => {
     if (!resources) return;
 
     const fileInfo = resources[fileType];
-    window.open(`/files/${resources.courseCode}/${fileInfo.file}`, "_blank");
+    // Use the correct path to PDF files in the data/resources/[COURSE] directory
+    window.open(
+      `/src/data/resources/${resources.courseCode}/${fileInfo.file}`,
+      "_blank"
+    );
   };
 
   const handleDownload = (fileType: "cheatsheet" | "processSheet") => {
     if (!resources) return;
 
     const fileInfo = resources[fileType];
-    // Create an anchor element and trigger download
+    // Create an anchor element and trigger download with the correct file path
     const link = document.createElement("a");
-    link.href = `/files/${resources.courseCode}/${fileInfo.file}`;
+    link.href = `/src/data/resources/${resources.courseCode}/${fileInfo.file}`;
     link.download = fileInfo.file;
     document.body.appendChild(link);
     link.click();
