@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import logo from "../../assets/logo1.png";
 const NavBar = () => {
   return (
     <nav className="bg-blue-800 text-white shadow-md">
@@ -7,7 +7,7 @@ const NavBar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="text-xl font-bold">
-              EngSci Platform
+              <img src={logo} alt="EngSci Platform" className="h-20" />
             </Link>
           </div>
           <div className="flex items-center space-x-4">

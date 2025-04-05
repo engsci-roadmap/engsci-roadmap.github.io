@@ -2,11 +2,11 @@
   "courseCode": "ESC103",
   "courseName": "Engineering Mathematics and Computation",
   "cheatsheet": {
-    "title": "Engineering Mathematics Cheatsheet",
+    "title": "Cheatsheet",
     "file": "cheatsheet.pdf"
   },
   "processSheet": {
-    "title": "Engineering Mathematics Process Sheet",
+    "title": "Process Sheet",
     "file": "process-sheet.pdf"
   },
   "externalLinks": [

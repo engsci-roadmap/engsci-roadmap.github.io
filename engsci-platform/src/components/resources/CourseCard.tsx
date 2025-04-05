@@ -10,12 +10,9 @@ const CourseCard = ({ course }: CourseCardProps) => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // In a real app, this would be an API call
-    // For now, we'll import the JSON directly
     const fetchResources = async () => {
       try {
         setLoading(true);
-        // In a production app, use a proper API call
         const resourcesData = await import(`../../data/${course.resources}`);
         setResources(resourcesData.default);
       } catch (error) {
@@ -32,8 +29,6 @@ const CourseCard = ({ course }: CourseCardProps) => {
     if (!resources) return;
 
     const fileInfo = resources[fileType];
-    // In a real app, this would point to actual files
-    // For demo, we'll assume they're in a public folder
     window.open(`/files/${resources.courseCode}/${fileInfo.file}`, "_blank");
   };
 
