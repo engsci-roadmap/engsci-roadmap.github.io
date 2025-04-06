@@ -18,6 +18,7 @@ export interface ResourceFile {
   file: string;
 }
 
+// This interface uses other interfaces as its properties
 export interface CourseResources {
   courseCode: string;
   courseName: string;

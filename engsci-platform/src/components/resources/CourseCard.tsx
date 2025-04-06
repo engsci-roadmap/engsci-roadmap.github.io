@@ -1,41 +1,50 @@
 import { useState, useEffect } from "react";
 import { CourseMetadata, CourseResources } from "../../types/resources";
 
-interface CourseCardProps {
+// Interface
+  // prop: course
+  // type: CourseMetadata
+interface CourseCardProps { 
   course: CourseMetadata;
 }
 
+// CourseCard component (input: course prop) and (returns a div)
 const CourseCard = ({ course }: CourseCardProps) => {
+  // Resources state that sets resources to CourseResources or null if resources not found
   const [resources, setResources] = useState<CourseResources | null>(null);
+  // Loading state that initializes to true and updates when resources are fetched
+  // True = loading, False = not loading
   const [loading, setLoading] = useState<boolean>(true);
 
+  // UseEffect hook that runs fetchResources when course.resources or course.code changes 
   useEffect(() => {
-    const fetchResources = async () => {
+    const fetchResources = async () => { 
       try {
-        setLoading(true);
-        const resourcesData = await import(`../../data/${course.resources}`);
+        setLoading(true); // loading = true
+        const resourcesData = await import(`../../data/${course.resources}`); // import resources from data folder
         setResources(resourcesData.default);
       } catch (error) {
         console.error(`Failed to load resources for ${course.code}:`, error);
       } finally {
-        setLoading(false);
+        setLoading(false); // loading = false
       }
     };
 
     fetchResources();
   }, [course.resources, course.code]);
 
+  // Handle view which gets the cheatsheet or process sheet file from resources and opens it in a new tab
   const handleView = (fileType: "cheatsheet" | "processSheet") => {
     if (!resources) return;
 
     const fileInfo = resources[fileType];
-    // Use the correct path to PDF files in the data/resources/[COURSE] directory
-    window.open(
+    window.open( // opens the file in a new tab
       `/src/data/resources/${resources.courseCode}/${fileInfo.file}`,
       "_blank"
     );
   };
 
+  // Handle download which creates an anchor element and triggers download with the correct file path
   const handleDownload = (fileType: "cheatsheet" | "processSheet") => {
     if (!resources) return;
 
@@ -49,6 +58,7 @@ const CourseCard = ({ course }: CourseCardProps) => {
     document.body.removeChild(link);
   };
 
+  // If loading = true, return a loading state
   if (loading) {
     return (
       <div className="bg-white rounded-lg shadow-md p-5 animate-pulse">
@@ -60,6 +70,7 @@ const CourseCard = ({ course }: CourseCardProps) => {
     );
   }
 
+  // If resources = null, return a message
   if (!resources) {
     return (
       <div className="bg-white rounded-lg shadow-md p-5">
@@ -71,10 +82,11 @@ const CourseCard = ({ course }: CourseCardProps) => {
     );
   }
 
+  // If resources are found, return the course card
   return (
     <div className="bg-white rounded-lg shadow-md p-5 hover:shadow-lg transition-shadow">
-      <h3 className="text-lg font-medium">
-        {resources.courseCode} – {resources.courseName}
+      <h3 className="text-lg font-medium text-center">
+        {resources.courseCode} 
       </h3>
 
       {/* Cheatsheet */}

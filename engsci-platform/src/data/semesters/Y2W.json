@@ -1,10 +1,5 @@
 [
   {
-    "code": "BME205",
-    "title": "Fundamentals of Biomedical Engineering",
-    "resources": "resources/BME205/index.json"
-  },
-  {
     "code": "ECE259",
     "title": "Electromagnetism",
     "roadmap": "roadmaps/ECE259.json",
