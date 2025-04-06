@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import SemesterTabs from '../components/resources/SemesterTabs';
 import { CourseMetadata } from '../types/resources';
 
+// Interface for a single semester
 interface SemesterData {
   id: string;
   name: string;
@@ -9,14 +10,19 @@ interface SemesterData {
 }
 
 const Resources = () => {
+  // Define the useState hooks for the semestersData, loading, and error
+  // semestersData init to empty array
   const [semestersData, setSemestersData] = useState<SemesterData[]>([]);
+  // loading init to true
   const [loading, setLoading] = useState<boolean>(true);
+  // error init to null
   const [error, setError] = useState<string | null>(null);
 
+  // UseEffect hook that runs fetchSemesters when the component mounts
   useEffect(() => {
     const fetchSemesters = async () => {
       try {
-        setLoading(true);
+        setLoading(true); // loading = true
         
         const semesters = [
           { id: 'Y1F', name: 'Year 1 Fall' },
@@ -25,6 +31,7 @@ const Resources = () => {
           { id: 'Y2W', name: 'Year 2 Winter' },
         ];
         
+        // 
         const semestersWithCourses = await Promise.all(
           semesters.map(async (semester) => {
             try {

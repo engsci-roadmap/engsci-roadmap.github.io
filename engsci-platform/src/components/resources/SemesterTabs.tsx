@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CourseMetadata } from "../../types/resources";
 import CourseCard from "./CourseCard.tsx";
 
+// Define Interfaces
 interface SemesterTab {
   id: string;
   name: string;
@@ -9,12 +10,15 @@ interface SemesterTab {
 }
 
 interface SemesterTabsProps {
-  tabs: SemesterTab[];
+  tabs: SemesterTab[]; // tabs is an array of SemesterTab interfaces
 }
 
+// SemesterTabs component (input: tabs prop) and (returns a div)
 const SemesterTabs = ({ tabs }: SemesterTabsProps) => {
+  // useState hook that init activeTab to the first tab's id or an empty string if tabs is empty
   const [activeTab, setActiveTab] = useState<string>(tabs[0]?.id || "");
 
+  // Handle tab click which updates the active tab by setting activeTab to the tabId
   const handleTabClick = (tabId: string) => {
     setActiveTab(tabId);
   };
