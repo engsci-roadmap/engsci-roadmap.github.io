@@ -1,9 +1,9 @@
 export interface CourseMetadata {
   code: string;
   title: string;
-  roadmap?: string;
+  roadmap: string;
   resources: string;
-  problems?: string;
+  problems: string;
 }
 
 export interface ExternalLink {
