@@ -10,7 +10,7 @@ interface CourseCardProps {
 
 // CourseCard component (input: course prop) and (returns a div)
 const CourseCard = ({ course }: CourseCardProps) => {
-  // Resources state that sets resources to CourseResources or null if resources not found
+  // Resources state that sets resources to CourseResources interface or null if resources not found
   const [resources, setResources] = useState<CourseResources | null>(null);
   // Loading state that initializes to true and updates when resources are fetched
   // True = loading, False = not loading
@@ -66,6 +66,18 @@ const CourseCard = ({ course }: CourseCardProps) => {
         <div className="h-4 bg-gray-200 rounded w-1/2 mb-3"></div>
         <div className="h-4 bg-gray-200 rounded w-1/2 mb-3"></div>
         <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+      </div>
+    );
+  }
+
+  // If resources = null, return a message
+  if (!resources) {
+    return (
+      <div className="bg-white rounded-lg shadow-md p-5">
+        <h3 className="text-lg font-medium">
+          {course.code} 
+        </h3>
+        <p className="text-red-500 mt-2">Resources unavailable</p>
       </div>
     );
   }
