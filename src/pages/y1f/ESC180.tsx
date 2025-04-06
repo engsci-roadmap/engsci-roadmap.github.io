@@ -1,3 +1,6 @@
+import ReactFlowProvider from "react-flow-renderer";
+import FlowChart from "./FlowChart";
+
 const ESC180 = () => {
   return (
     <div className="w-full h-[calc(100vh-theme(spacing.16)-theme(spacing.16))] flex flex-col">

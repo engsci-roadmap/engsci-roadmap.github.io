@@ -1,7 +1,34 @@
-.env
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-rag_env/
-# pip list: see list of installed packages
-# pip freeze > requirements.txt: save list of installed packages
-# deactivate: exit virtual environment
-# activate: source rag_env/bin/activate
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# LaTeX files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.toc
+*.out
+*.synctex.gz
+.vercel

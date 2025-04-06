@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CourseMetadata } from "../../types/resources";
+import { CourseMetadata } from "../../types/resources.ts";
 import CourseCard from "./CourseCard.tsx";
 
 // Define Interfaces
