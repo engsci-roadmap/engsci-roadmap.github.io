@@ -13,7 +13,6 @@ const SemesterCourseCard = ({ course, semester }: SemesterCourseCardProps) => {
         <h3 className="text-xl font-semibold text-blue-700 text-center">
           {course.code}
         </h3>
-      <p className="text-gray-700 mb-4 flex-grow">{course.title}</p>
       <div className="mt-auto pt-3">
         <Link
           to={`/${semester}/${course.code.toLowerCase()}`}
