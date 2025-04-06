@@ -7,13 +7,12 @@ import ReactFlow, {
   useEdgesState,
   useReactFlow,
   Panel,
-  Node,
-  Edge,
 } from "reactflow";
 import "reactflow/dist/style.css";
 
-// Import the JSON data directly
-import ESC180Data from "@/data/roadmaps/ESC180.json";
+// Import the JSON data via direct import
+// We'll use fetch instead for better compatibility
+// import ESC180Data from "@/data/roadmaps/ESC180.json";
 
 interface FlowChartProps {
   jsonPath: string;
@@ -28,14 +27,85 @@ const FlowChart = ({ jsonPath }: FlowChartProps) => {
   const reactFlowInstance = useReactFlow();
 
   useEffect(() => {
-    // Extract course code from the path (e.g., "ESC180" from "ESC180.json")
+    // Extract course code from the path
     const courseCode = jsonPath.replace(".json", "");
 
-    // For now, just handle ESC180 directly since it's the only one we're implementing
-    if (courseCode === "ESC180") {
-      setNodes(ESC180Data.nodes);
-      setEdges(ESC180Data.edges);
-    }
+    const fetchData = async () => {
+      try {
+        // Try different paths to handle both development and production
+        const paths = [
+          `/src/data/roadmaps/${courseCode}.json`, // Dev path
+          `/data/roadmaps/${courseCode}.json`, // Prod path with public folder
+          `./data/roadmaps/${courseCode}.json`, // Alternative relative path
+        ];
+
+        let data = null;
+
+        // Try each path until one works
+        for (const path of paths) {
+          try {
+            const response = await fetch(path);
+            if (response.ok) {
+              data = await response.json();
+              break;
+            }
+          } catch (e) {
+            // Continue to next path
+          }
+        }
+
+        // If we have data, use it
+        if (data) {
+          setNodes(data.nodes);
+          setEdges(data.edges);
+        } else {
+          // Fallback to hardcoded data for ESC180
+          if (courseCode === "ESC180") {
+            // Use hardcoded ESC180 data as fallback
+            const fallbackData = {
+              nodes: [
+                {
+                  id: "intro",
+                  type: "default",
+                  data: { label: "Introduction to Programming" },
+                  position: { x: 250, y: 0 },
+                },
+                {
+                  id: "variables",
+                  type: "default",
+                  data: { label: "Variables and Data Types" },
+                  position: { x: 100, y: 100 },
+                },
+                {
+                  id: "control",
+                  type: "default",
+                  data: { label: "Control Flow" },
+                  position: { x: 400, y: 100 },
+                },
+                {
+                  id: "functions",
+                  type: "default",
+                  data: { label: "Functions" },
+                  position: { x: 250, y: 200 },
+                },
+              ],
+              edges: [
+                { id: "e1", source: "intro", target: "variables" },
+                { id: "e2", source: "intro", target: "control" },
+                { id: "e3", source: "variables", target: "functions" },
+                { id: "e4", source: "control", target: "functions" },
+              ],
+            };
+            setNodes(fallbackData.nodes);
+            setEdges(fallbackData.edges);
+          }
+        }
+      } catch (error) {
+        console.error("Error loading roadmap data:", error);
+      }
+    };
+
+    fetchData();
   }, [jsonPath, setNodes, setEdges]);
 
   const resetGraph = useCallback(() => {
