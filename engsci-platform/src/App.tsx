@@ -35,9 +35,9 @@ import PHY294 from "./pages/y2w/PHY294";
 function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen w-full">
+      <div className="flex flex-col min-h-screen">
         <NavBar />
-        <main className="flex-grow w-full">
+        <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/resources" element={<Resources />} />
