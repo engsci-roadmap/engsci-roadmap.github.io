@@ -16,6 +16,12 @@ import {
   FiZoomIn,
 } from "react-icons/fi";
 
+// Define MarkerType enum that matches ReactFlow's MarkerType
+enum MarkerType {
+  Arrow = "arrow",
+  ArrowClosed = "arrowclosed",
+}
+
 // Custom types that match our JSON structure
 export type NodeData = {
   label: string;
@@ -70,7 +76,7 @@ const CourseDependencyGraphContent = ({
     animated: false,
     style: { strokeWidth: 1.5, stroke: "#555" },
     markerEnd: {
-      type: "arrowclosed",
+      type: MarkerType.ArrowClosed,
       width: 15,
       height: 15,
       color: "#555",
@@ -115,7 +121,7 @@ const CourseDependencyGraphContent = ({
     type: "bezier", // Use bezier for curved lines
     style: { strokeWidth: 1.5, stroke: "#555" },
     markerEnd: {
-      type: "arrowclosed",
+      type: MarkerType.ArrowClosed,
       color: "#555",
     },
   };
@@ -125,8 +131,6 @@ const CourseDependencyGraphContent = ({
       ref={reactFlowWrapper}
       className="w-full h-full border border-slate-300 rounded-lg overflow-hidden"
     >
-
-
       <ReactFlow
         nodes={nonConnectableNodes}
         edges={enhancedEdges}
