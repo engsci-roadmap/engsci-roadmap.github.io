@@ -1,4 +1,7 @@
 {
+  "projectSettings": {
+    "framework": "vite"
+  },
   "buildCommand": "cd engsci-platform && npm run build",
   "outputDirectory": "engsci-platform/dist",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
