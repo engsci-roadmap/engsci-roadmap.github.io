@@ -1,25 +1,98 @@
+import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-6 w-full">
+    <footer className="bg-gray-800 text-white py-8 w-full">
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0">
-            <p className="text-sm">
-              © {new Date().getFullYear()} EngSci Cheatcode. All rights
-              reserved.
-            </p>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {/* Links Section */}
+          <div>
+            <h3 className="font-semibold text-lg mb-3">Links</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/y1f" className="text-gray-400 hover:text-white">
+                  Y1F
+                </Link>
+              </li>
+              <li>
+                <Link to="/y1w" className="text-gray-400 hover:text-white">
+                  Y1W
+                </Link>
+              </li>
+              <li>
+                <Link to="/y2f" className="text-gray-400 hover:text-white">
+                  Y2F
+                </Link>
+              </li>
+              <li>
+                <Link to="/y2w" className="text-gray-400 hover:text-white">
+                  Y2W
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/resources"
+                  className="text-gray-400 hover:text-white"
+                >
+                  Resources
+                </Link>
+              </li>
+            </ul>
           </div>
-          <div className="flex space-x-6">
-            <a href="#" className="text-gray-400 hover:text-white">
-              Terms
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white">
-              Privacy
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white">
-              Contact
+
+          {/* Social Section */}
+          <div>
+            <h3 className="font-semibold text-lg mb-3">Social</h3>
+            <ul className="space-y-2">
+              <li>
+                <a
+                  href="https://linkedin.com/in/lee-hanhee"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white flex items-center"
+                >
+                  <FaLinkedin className="mr-2" /> LinkedIn
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/lee-hanhee"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white flex items-center"
+                >
+                  <FaGithub className="mr-2" /> GitHub
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact Section */}
+          <div>
+            <h3 className="font-semibold text-lg mb-3">Contact</h3>
+            <a
+              href="mailto:hanhee@hotmail.ca"
+              className="text-gray-400 hover:text-white flex items-center"
+            >
+              <FaEnvelope className="mr-2" /> hanhee@hotmail.ca
             </a>
           </div>
+
+          {/* Legal Section */}
+          <div>
+            <h3 className="font-semibold text-lg mb-3">Legal</h3>
+            <Link to="/terms" className="text-gray-400 hover:text-white">
+              Terms of Service
+            </Link>
+          </div>
+        </div>
+
+        {/* Copyright */}
+        <div className="mt-8 pt-4 border-t border-gray-700">
+          <p className="text-sm text-gray-400">
+            © {new Date().getFullYear()} EngSci Cheatcode. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
