@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/logo1.png";
+
 const NavBar = () => {
   return (
-    <nav className="bg-blue-800 text-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="bg-blue-800 text-white shadow-md w-full">
+      <div className="container-fluid w-full px-4 sm:px-6">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="text-xl font-bold">
