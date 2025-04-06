@@ -2,6 +2,12 @@ import { useState, useEffect } from "react";
 import { CourseMetadata } from "../../types/resources";
 import SemesterCourseCard from "./SemesterCourseCard";
 
+// Import the semester data files directly
+import Y1FData from "../../data/semesters/Y1F.json";
+import Y1WData from "../../data/semesters/Y1W.json";
+import Y2FData from "../../data/semesters/Y2F.json";
+import Y2WData from "../../data/semesters/Y2W.json";
+
 interface SemesterCourseGridProps {
   semesterCode: string;
   title: string;
@@ -15,21 +21,29 @@ const SemesterCourseGrid = ({
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        setLoading(true);
-        const semesterData = await import(
-          `../../data/semesters/${semesterCode}.json`
-        ); /* @vite-ignore */
-        setCourses(semesterData.default);
-      } catch (error) {
-        console.error(`Failed to load courses for ${semesterCode}:`, error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    setLoading(true);
 
-    fetchCourses();
+    // Get data based on semesterCode
+    let semesterData: CourseMetadata[] = [];
+    switch (semesterCode.toUpperCase()) {
+      case "Y1F":
+        semesterData = Y1FData;
+        break;
+      case "Y1W":
+        semesterData = Y1WData;
+        break;
+      case "Y2F":
+        semesterData = Y2FData;
+        break;
+      case "Y2W":
+        semesterData = Y2WData;
+        break;
+      default:
+        console.error(`Unknown semester code: ${semesterCode}`);
+    }
+
+    setCourses(semesterData);
+    setLoading(false);
   }, [semesterCode]);
 
   if (loading) {
