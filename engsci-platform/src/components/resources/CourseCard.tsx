@@ -10,7 +10,7 @@ interface CourseCardProps {
 
 // CourseCard component (input: course prop) and (returns a div)
 const CourseCard = ({ course }: CourseCardProps) => {
-  // Resources state that sets resources to CourseResources interface or null if resources not found
+  // Resources state that sets resources to CourseResources or null if resources not found
   const [resources, setResources] = useState<CourseResources | null>(null);
   // Loading state that initializes to true and updates when resources are fetched
   // True = loading, False = not loading
@@ -21,7 +21,9 @@ const CourseCard = ({ course }: CourseCardProps) => {
     const fetchResources = async () => { 
       try {
         setLoading(true); // loading = true
-        const resourcesData = await import(`../../data/${course.resources}`); // import resources from data folder
+        const resourcesData = await import(
+          `../../data/${course.resources}`
+        ); /* @vite-ignore */
         setResources(resourcesData.default);
       } catch (error) {
         console.error(`Failed to load resources for ${course.code}:`, error);
