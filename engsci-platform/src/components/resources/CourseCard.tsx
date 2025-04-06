@@ -70,18 +70,6 @@ const CourseCard = ({ course }: CourseCardProps) => {
     );
   }
 
-  // If resources = null, return a message
-  if (!resources) {
-    return (
-      <div className="bg-white rounded-lg shadow-md p-5">
-        <h3 className="text-lg font-medium">
-          {course.code} – {course.title}
-        </h3>
-        <p className="text-red-500 mt-2">Resources unavailable</p>
-      </div>
-    );
-  }
-
   // If resources are found, return the course card
   return (
     <div className="bg-white rounded-lg shadow-md p-5 hover:shadow-lg transition-shadow">
