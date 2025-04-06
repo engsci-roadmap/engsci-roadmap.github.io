@@ -148,7 +148,6 @@ const CourseDependencyGraphContent = ({
         edgesFocusable={false}
         elementsSelectable={false}
         nodesConnectable={false}
-        nodeDragHandleClassName="hidden"
       >
         <Background />
         <Controls showInteractive={false} />
