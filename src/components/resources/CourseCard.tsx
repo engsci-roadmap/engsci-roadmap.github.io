@@ -87,7 +87,7 @@ const CourseCard = ({ course }: CourseCardProps) => {
   // If resources are found, return the course card
   return (
     <div className="bg-white rounded-lg shadow-md p-5 hover:shadow-lg transition-shadow">
-      <h3 className="text-lg font-medium text-blue-700 text-center">
+      <h3 className="text-xl font-semibold text-blue-700 text-center">
         {resources.courseCode}
       </h3>
 
