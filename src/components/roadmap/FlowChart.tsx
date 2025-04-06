@@ -1,13 +1,8 @@
 import { useState, useCallback, useEffect } from "react";
-import ReactFlow, {
-  Background,
-  Controls,
-  MiniMap,
-  useNodesState,
-  useEdgesState,
-  useReactFlow,
-  Panel,
-} from "reactflow";
+import ReactFlow, { Background, Controls, MiniMap, Panel } from "reactflow";
+import useNodesState from "reactflow";
+import useEdgesState from "reactflow";
+import useReactFlow from "reactflow";
 import "reactflow/dist/style.css";
 
 // Import the JSON data via direct import
@@ -27,16 +22,13 @@ const FlowChart = ({ jsonPath }: FlowChartProps) => {
   const reactFlowInstance = useReactFlow();
 
   useEffect(() => {
-    // Extract course code from the path
-    const courseCode = jsonPath.replace(".json", "");
-
     const fetchData = async () => {
       try {
         // Try different paths to handle both development and production
         const paths = [
-          `/src/data/roadmaps/${courseCode}.json`, // Dev path
-          `/data/roadmaps/${courseCode}.json`, // Prod path with public folder
-          `./data/roadmaps/${courseCode}.json`, // Alternative relative path
+          `/data/roadmaps/${jsonPath}`,
+          `/src/data/roadmaps/${jsonPath}`,
+          `./data/roadmaps/${jsonPath}`,
         ];
 
         let data = null;
@@ -49,7 +41,7 @@ const FlowChart = ({ jsonPath }: FlowChartProps) => {
               data = await response.json();
               break;
             }
-          } catch (e) {
+          } catch {
             // Continue to next path
           }
         }
@@ -59,46 +51,7 @@ const FlowChart = ({ jsonPath }: FlowChartProps) => {
           setNodes(data.nodes);
           setEdges(data.edges);
         } else {
-          // Fallback to hardcoded data for ESC180
-          if (courseCode === "ESC180") {
-            // Use hardcoded ESC180 data as fallback
-            const fallbackData = {
-              nodes: [
-                {
-                  id: "intro",
-                  type: "default",
-                  data: { label: "Introduction to Programming" },
-                  position: { x: 250, y: 0 },
-                },
-                {
-                  id: "variables",
-                  type: "default",
-                  data: { label: "Variables and Data Types" },
-                  position: { x: 100, y: 100 },
-                },
-                {
-                  id: "control",
-                  type: "default",
-                  data: { label: "Control Flow" },
-                  position: { x: 400, y: 100 },
-                },
-                {
-                  id: "functions",
-                  type: "default",
-                  data: { label: "Functions" },
-                  position: { x: 250, y: 200 },
-                },
-              ],
-              edges: [
-                { id: "e1", source: "intro", target: "variables" },
-                { id: "e2", source: "intro", target: "control" },
-                { id: "e3", source: "variables", target: "functions" },
-                { id: "e4", source: "control", target: "functions" },
-              ],
-            };
-            setNodes(fallbackData.nodes);
-            setEdges(fallbackData.edges);
-          }
+          console.error(`Failed to load roadmap data for: ${jsonPath}`);
         }
       } catch (error) {
         console.error("Error loading roadmap data:", error);
