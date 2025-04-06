@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { CourseMetadata, CourseResources } from "../../types/resources";
 
 // Interface
-  // prop: course
-  // type: CourseMetadata
-interface CourseCardProps { 
+// prop: course
+// type: CourseMetadata
+interface CourseCardProps {
   course: CourseMetadata;
 }
 
@@ -16,9 +16,9 @@ const CourseCard = ({ course }: CourseCardProps) => {
   // True = loading, False = not loading
   const [loading, setLoading] = useState<boolean>(true);
 
-  // UseEffect hook that runs fetchResources when course.resources or course.code changes 
+  // UseEffect hook that runs fetchResources when course.resources or course.code changes
   useEffect(() => {
-    const fetchResources = async () => { 
+    const fetchResources = async () => {
       try {
         setLoading(true); // loading = true
         const resourcesData = await import(
@@ -40,7 +40,8 @@ const CourseCard = ({ course }: CourseCardProps) => {
     if (!resources) return;
 
     const fileInfo = resources[fileType];
-    window.open( // opens the file in a new tab
+    window.open(
+      // opens the file in a new tab
       `/src/data/resources/${resources.courseCode}/${fileInfo.file}`,
       "_blank"
     );
@@ -76,9 +77,7 @@ const CourseCard = ({ course }: CourseCardProps) => {
   if (!resources) {
     return (
       <div className="bg-white rounded-lg shadow-md p-5">
-        <h3 className="text-lg font-medium">
-          {course.code} 
-        </h3>
+        <h3 className="text-lg font-medium">{course.code}</h3>
         <p className="text-red-500 mt-2">Resources unavailable</p>
       </div>
     );
