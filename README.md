@@ -22,34 +22,6 @@ npm install
 npm run dev
 ```
 
-## Deployment
-
-This project is configured for deployment to GitHub Pages.
-
-### Automatic Deployment
-
-Pushing to the `main` branch will automatically trigger a GitHub Actions workflow that builds and deploys the site to GitHub Pages.
-
-### Manual Deployment
-
-You can also deploy manually using:
-
-```
-npm run deploy
-```
-
-This will build the project and push it to the `gh-pages` branch.
-
-### GitHub Repository Setup
-
-1. Make sure your repository settings have GitHub Pages enabled
-2. Go to Settings > Pages
-3. Set the source to "Deploy from a branch"
-4. Select the `gh-pages` branch and root folder
-5. Save the settings
-
-The site will be available at: https://your-username.github.io/engsci-roadmap.github.io/
-
 ## Roadmap Components
 
 ### NeetCodeRoadmap
