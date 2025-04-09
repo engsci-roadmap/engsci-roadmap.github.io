@@ -93,6 +93,10 @@ const Footer = () => {
           <p className="text-sm text-gray-400">
             © {new Date().getFullYear()} EngSci Roadmap. All rights reserved.
           </p>
+          <p className="text-xs text-gray-500 mt-1">
+            All content on this site is protected by copyright law. Unauthorized
+            use, reproduction, or distribution is prohibited.
+          </p>
         </div>
       </div>
     </footer>

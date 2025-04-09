@@ -103,3 +103,9 @@ export default tseslint.config({
   },
 });
 ```
+
+## License
+
+This repository and all its contents are protected by copyright law. The use of any materials within this repository is strictly limited as described in the [LICENSE.md](LICENSE.md) file.
+
+**All Rights Reserved** - Unauthorized use, reproduction, or distribution of the content is prohibited.
