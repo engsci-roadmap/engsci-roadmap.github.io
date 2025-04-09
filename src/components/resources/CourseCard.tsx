@@ -21,10 +21,14 @@ const CourseCard = ({ course }: CourseCardProps) => {
     const fetchResources = async () => {
       try {
         setLoading(true); // loading = true
-        const resourcesData = await import(
-          `../../data/resources/${course.code}/index.json`
-        );
-        setResources(resourcesData.default);
+
+        // Instead of dynamic import, fetch the JSON file directly
+        const response = await fetch(`/${course.resources}`);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch resources: ${response.statusText}`);
+        }
+        const data = await response.json();
+        setResources(data);
       } catch (error) {
         console.error(`Failed to load resources for ${course.code}:`, error);
       } finally {
@@ -40,12 +44,9 @@ const CourseCard = ({ course }: CourseCardProps) => {
     if (!resources) return;
 
     const fileInfo = resources[fileType];
-    // Get base URL for GitHub Pages
-    const baseUrl = import.meta.env.BASE_URL || "/";
+    // Use path to public directory resources
     window.open(
-      `${window.location.origin}${baseUrl === "/" ? "" : baseUrl}/resources/${
-        resources.courseCode
-      }/${fileInfo.file}`,
+      `/resources/${resources.courseCode}/${fileInfo.file}`,
       "_blank"
     );
   };
@@ -55,13 +56,9 @@ const CourseCard = ({ course }: CourseCardProps) => {
     if (!resources) return;
 
     const fileInfo = resources[fileType];
-    // Get base URL for GitHub Pages
-    const baseUrl = import.meta.env.BASE_URL || "/";
-    // Create an anchor element and trigger download with the correct file path
+    // Create an anchor element and trigger download with the correct file path to public directory
     const link = document.createElement("a");
-    link.href = `${window.location.origin}${
-      baseUrl === "/" ? "" : baseUrl
-    }/resources/${resources.courseCode}/${fileInfo.file}`;
+    link.href = `/resources/${resources.courseCode}/${fileInfo.file}`;
     link.download = fileInfo.file;
     document.body.appendChild(link);
     link.click();
