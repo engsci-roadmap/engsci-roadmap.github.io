@@ -88,7 +88,7 @@ const Terms = () => {
         </h2>
         <p className="text-gray-700 mb-6">
           We may update these Terms at any time. Continued use of the platform
-          constitutes acceptance of the updated terms.
+          constitutes acceptance of the updated terms and conditions.
         </p>
       </section>
 
