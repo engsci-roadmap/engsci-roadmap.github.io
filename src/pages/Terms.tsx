@@ -1,5 +1,3 @@
-import React from "react";
-
 const Terms = () => {
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
