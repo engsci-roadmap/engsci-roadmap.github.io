@@ -91,7 +91,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="mt-8 pt-4 border-t border-gray-700">
           <p className="text-sm text-gray-400">
-            © {new Date().getFullYear()} EngSci Cheatcode. All rights reserved.
+            © {new Date().getFullYear()} EngSci Roadmap. All rights reserved.
           </p>
         </div>
       </div>

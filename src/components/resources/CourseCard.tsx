@@ -41,8 +41,8 @@ const CourseCard = ({ course }: CourseCardProps) => {
 
     const fileInfo = resources[fileType];
     window.open(
-      // opens the file in a new tab
-      `/src/data/resources/${resources.courseCode}/${fileInfo.file}`,
+      // Use absolute path starting from the root
+      `${window.location.origin}/src/data/resources/${resources.courseCode}/${fileInfo.file}`,
       "_blank"
     );
   };
@@ -54,7 +54,7 @@ const CourseCard = ({ course }: CourseCardProps) => {
     const fileInfo = resources[fileType];
     // Create an anchor element and trigger download with the correct file path
     const link = document.createElement("a");
-    link.href = `/src/data/resources/${resources.courseCode}/${fileInfo.file}`;
+    link.href = `${window.location.origin}/src/data/resources/${resources.courseCode}/${fileInfo.file}`;
     link.download = fileInfo.file;
     document.body.appendChild(link);
     link.click();
