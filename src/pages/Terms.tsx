@@ -1,9 +1,7 @@
 const Terms = () => {
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold text-blue-700 mb-8">
-        Terms of Service
-      </h1>
+      <h1 className="text-3xl font-bold text-gray-900 mb-8">Terms of Service</h1>
 
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-4">1. Introduction</h2>
