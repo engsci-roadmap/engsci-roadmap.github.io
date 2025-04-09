@@ -40,9 +40,12 @@ const CourseCard = ({ course }: CourseCardProps) => {
     if (!resources) return;
 
     const fileInfo = resources[fileType];
+    // Get base URL for GitHub Pages
+    const baseUrl = import.meta.env.BASE_URL || "/";
     window.open(
-      // Use path from public directory which will be at the root in production
-      `/resources/${resources.courseCode}/${fileInfo.file}`,
+      `${window.location.origin}${baseUrl === "/" ? "" : baseUrl}/resources/${
+        resources.courseCode
+      }/${fileInfo.file}`,
       "_blank"
     );
   };
@@ -52,9 +55,13 @@ const CourseCard = ({ course }: CourseCardProps) => {
     if (!resources) return;
 
     const fileInfo = resources[fileType];
+    // Get base URL for GitHub Pages
+    const baseUrl = import.meta.env.BASE_URL || "/";
     // Create an anchor element and trigger download with the correct file path
     const link = document.createElement("a");
-    link.href = `/resources/${resources.courseCode}/${fileInfo.file}`;
+    link.href = `${window.location.origin}${
+      baseUrl === "/" ? "" : baseUrl
+    }/resources/${resources.courseCode}/${fileInfo.file}`;
     link.download = fileInfo.file;
     document.body.appendChild(link);
     link.click();
