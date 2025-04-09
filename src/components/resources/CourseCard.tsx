@@ -22,8 +22,8 @@ const CourseCard = ({ course }: CourseCardProps) => {
       try {
         setLoading(true); // loading = true
         const resourcesData = await import(
-          `../../data/${course.resources}`
-        ); /* @vite-ignore */
+          `../../data/resources/${course.code}/index.json`
+        );
         setResources(resourcesData.default);
       } catch (error) {
         console.error(`Failed to load resources for ${course.code}:`, error);
@@ -41,8 +41,8 @@ const CourseCard = ({ course }: CourseCardProps) => {
 
     const fileInfo = resources[fileType];
     window.open(
-      // Use absolute path starting from the root
-      `${window.location.origin}/src/data/resources/${resources.courseCode}/${fileInfo.file}`,
+      // Use path from public directory which will be at the root in production
+      `/resources/${resources.courseCode}/${fileInfo.file}`,
       "_blank"
     );
   };
@@ -54,7 +54,7 @@ const CourseCard = ({ course }: CourseCardProps) => {
     const fileInfo = resources[fileType];
     // Create an anchor element and trigger download with the correct file path
     const link = document.createElement("a");
-    link.href = `${window.location.origin}/src/data/resources/${resources.courseCode}/${fileInfo.file}`;
+    link.href = `/resources/${resources.courseCode}/${fileInfo.file}`;
     link.download = fileInfo.file;
     document.body.appendChild(link);
     link.click();
