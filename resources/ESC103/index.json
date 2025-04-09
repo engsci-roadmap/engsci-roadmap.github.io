@@ -1,0 +1,22 @@
+{
+  "courseCode": "ESC103",
+  "courseName": "Engineering Mathematics and Computation",
+  "cheatsheet": {
+    "title": "Cheatsheet",
+    "file": "cheatsheet.pdf"
+  },
+  "processSheet": {
+    "title": "Process Sheet",
+    "file": "process-sheet.pdf"
+  },
+  "externalLinks": [
+    {
+      "title": "Khan Academy: Multivariable Calculus",
+      "url": "https://www.khanacademy.org/math/multivariable-calculus"
+    },
+    {
+      "title": "MATLAB Documentation",
+      "url": "https://www.mathworks.com/help/matlab/"
+    }
+  ]
+}
