@@ -93,7 +93,7 @@ const Terms = () => {
       </section>
 
       <div className="text-sm text-gray-500 mt-12 pt-4 border-t border-gray-200">
-        <p>Last updated: April 2023</p>
+        <p>Last updated: April 2025</p>
       </div>
     </div>
   );
