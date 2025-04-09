@@ -1,0 +1,475 @@
+{
+  "nodes": [
+    {
+      "id": "set-theory",
+      "data": { "label": "Set Theory" },
+      "position": { "x": 400, "y": 0 }
+    },
+    {
+      "id": "set-operations",
+      "data": { "label": "Set Operations" },
+      "position": { "x": 200, "y": 80 }
+    },
+    {
+      "id": "counting-principles",
+      "data": { "label": "Counting Principles" },
+      "position": { "x": 400, "y": 80 }
+    },
+    {
+      "id": "combinatorics",
+      "data": { "label": "Combinatorics" },
+      "position": { "x": 600, "y": 80 }
+    },
+
+    {
+      "id": "basic-probability",
+      "data": { "label": "Basic Probability" },
+      "position": { "x": 400, "y": 160 }
+    },
+    {
+      "id": "axioms",
+      "data": { "label": "Probability Axioms" },
+      "position": { "x": 200, "y": 240 }
+    },
+    {
+      "id": "conditional-probability",
+      "data": { "label": "Conditional Probability" },
+      "position": { "x": 400, "y": 240 }
+    },
+    {
+      "id": "independence",
+      "data": { "label": "Independence" },
+      "position": { "x": 600, "y": 240 }
+    },
+    {
+      "id": "bayes-theorem",
+      "data": { "label": "Bayes' Theorem" },
+      "position": { "x": 400, "y": 320 }
+    },
+
+    {
+      "id": "random-variables",
+      "data": { "label": "Random Variables" },
+      "position": { "x": 400, "y": 400 }
+    },
+    {
+      "id": "discrete-rv",
+      "data": { "label": "Discrete Random Variables" },
+      "position": { "x": 200, "y": 480 }
+    },
+    {
+      "id": "continuous-rv",
+      "data": { "label": "Continuous Random Variables" },
+      "position": { "x": 600, "y": 480 }
+    },
+    {
+      "id": "pmf",
+      "data": { "label": "Probability Mass Functions" },
+      "position": { "x": 100, "y": 560 }
+    },
+    {
+      "id": "pdf",
+      "data": { "label": "Probability Density Functions" },
+      "position": { "x": 700, "y": 560 }
+    },
+    {
+      "id": "cdf",
+      "data": { "label": "Cumulative Distribution Functions" },
+      "position": { "x": 400, "y": 560 }
+    },
+
+    {
+      "id": "expectation",
+      "data": { "label": "Expectation" },
+      "position": { "x": 250, "y": 640 }
+    },
+    {
+      "id": "variance",
+      "data": { "label": "Variance" },
+      "position": { "x": 550, "y": 640 }
+    },
+    {
+      "id": "moments",
+      "data": { "label": "Moments" },
+      "position": { "x": 400, "y": 720 }
+    },
+
+    {
+      "id": "distributions",
+      "data": { "label": "Probability Distributions" },
+      "position": { "x": 400, "y": 800 }
+    },
+    {
+      "id": "discrete-distributions",
+      "data": { "label": "Discrete Distributions" },
+      "position": { "x": 200, "y": 880 }
+    },
+    {
+      "id": "continuous-distributions",
+      "data": { "label": "Continuous Distributions" },
+      "position": { "x": 600, "y": 880 }
+    },
+    {
+      "id": "binomial",
+      "data": { "label": "Binomial Distribution" },
+      "position": { "x": 50, "y": 960 }
+    },
+    {
+      "id": "poisson",
+      "data": { "label": "Poisson Distribution" },
+      "position": { "x": 200, "y": 960 }
+    },
+    {
+      "id": "geometric",
+      "data": { "label": "Geometric Distribution" },
+      "position": { "x": 350, "y": 960 }
+    },
+    {
+      "id": "normal",
+      "data": { "label": "Normal Distribution" },
+      "position": { "x": 500, "y": 960 }
+    },
+    {
+      "id": "exponential",
+      "data": { "label": "Exponential Distribution" },
+      "position": { "x": 650, "y": 960 }
+    },
+    {
+      "id": "uniform",
+      "data": { "label": "Uniform Distribution" },
+      "position": { "x": 800, "y": 960 }
+    },
+    
+    {
+      "id": "joint-distributions",
+      "data": { "label": "Joint Distributions" },
+      "position": { "x": 400, "y": 1040 }
+    },
+    {
+      "id": "covariance",
+      "data": { "label": "Covariance" },
+      "position": { "x": 250, "y": 1120 }
+    },
+    {
+      "id": "correlation",
+      "data": { "label": "Correlation" },
+      "position": { "x": 550, "y": 1120 }
+    },
+
+    {
+      "id": "limit-theorems",
+      "data": { "label": "Limit Theorems" },
+      "position": { "x": 400, "y": 1200 }
+    },
+    {
+      "id": "law-large-numbers",
+      "data": { "label": "Law of Large Numbers" },
+      "position": { "x": 250, "y": 1280 }
+    },
+    {
+      "id": "central-limit",
+      "data": { "label": "Central Limit Theorem" },
+      "position": { "x": 550, "y": 1280 }
+    },
+
+    {
+      "id": "statistical-inference",
+      "data": { "label": "Statistical Inference" },
+      "position": { "x": 400, "y": 1360 }
+    },
+    {
+      "id": "sampling",
+      "data": { "label": "Sampling" },
+      "position": { "x": 200, "y": 1440 }
+    },
+    {
+      "id": "point-estimation",
+      "data": { "label": "Point Estimation" },
+      "position": { "x": 400, "y": 1440 }
+    },
+    {
+      "id": "interval-estimation",
+      "data": { "label": "Interval Estimation" },
+      "position": { "x": 600, "y": 1440 }
+    },
+    {
+      "id": "confidence-intervals",
+      "data": { "label": "Confidence Intervals" },
+      "position": { "x": 600, "y": 1520 }
+    },
+    {
+      "id": "hypothesis-testing",
+      "data": { "label": "Hypothesis Testing" },
+      "position": { "x": 400, "y": 1520 }
+    },
+    {
+      "id": "parameter-tests",
+      "data": { "label": "Parameter Tests" },
+      "position": { "x": 400, "y": 1600 }
+    },
+
+    {
+      "id": "regression",
+      "data": { "label": "Regression" },
+      "position": { "x": 400, "y": 1680 }
+    },
+    {
+      "id": "linear-regression",
+      "data": { "label": "Linear Regression" },
+      "position": { "x": 250, "y": 1760 }
+    },
+    {
+      "id": "multiple-regression",
+      "data": { "label": "Multiple Regression" },
+      "position": { "x": 550, "y": 1760 }
+    }
+  ],
+
+  "edges": [
+    {
+      "id": "set-to-operations",
+      "source": "set-theory",
+      "target": "set-operations"
+    },
+    {
+      "id": "set-to-counting",
+      "source": "set-theory",
+      "target": "counting-principles"
+    },
+    {
+      "id": "set-to-combinatorics",
+      "source": "set-theory",
+      "target": "combinatorics"
+    },
+
+    {
+      "id": "set-ops-to-basic",
+      "source": "set-operations",
+      "target": "basic-probability"
+    },
+    {
+      "id": "counting-to-basic",
+      "source": "counting-principles",
+      "target": "basic-probability"
+    },
+    {
+      "id": "combinatorics-to-basic",
+      "source": "combinatorics",
+      "target": "basic-probability"
+    },
+
+    {
+      "id": "basic-to-axioms",
+      "source": "basic-probability",
+      "target": "axioms"
+    },
+    {
+      "id": "basic-to-conditional",
+      "source": "basic-probability",
+      "target": "conditional-probability"
+    },
+    {
+      "id": "basic-to-independence",
+      "source": "basic-probability",
+      "target": "independence"
+    },
+
+    {
+      "id": "conditional-to-bayes",
+      "source": "conditional-probability",
+      "target": "bayes-theorem"
+    },
+    {
+      "id": "independence-to-bayes",
+      "source": "independence",
+      "target": "bayes-theorem"
+    },
+
+    {
+      "id": "bayes-to-rv",
+      "source": "bayes-theorem",
+      "target": "random-variables"
+    },
+
+    {
+      "id": "rv-to-discrete",
+      "source": "random-variables",
+      "target": "discrete-rv"
+    },
+    {
+      "id": "rv-to-continuous",
+      "source": "random-variables",
+      "target": "continuous-rv"
+    },
+
+    { "id": "discrete-to-pmf", "source": "discrete-rv", "target": "pmf" },
+    { "id": "discrete-to-cdf", "source": "discrete-rv", "target": "cdf" },
+    { "id": "continuous-to-pdf", "source": "continuous-rv", "target": "pdf" },
+    { "id": "continuous-to-cdf", "source": "continuous-rv", "target": "cdf" },
+
+    { "id": "pmf-to-expectation", "source": "pmf", "target": "expectation" },
+    { "id": "pdf-to-expectation", "source": "pdf", "target": "expectation" },
+    { "id": "pmf-to-variance", "source": "pmf", "target": "variance" },
+    { "id": "pdf-to-variance", "source": "pdf", "target": "variance" },
+
+    {
+      "id": "expectation-to-moments",
+      "source": "expectation",
+      "target": "moments"
+    },
+    { "id": "variance-to-moments", "source": "variance", "target": "moments" },
+
+    {
+      "id": "pmf-to-distributions",
+      "source": "pmf",
+      "target": "distributions"
+    },
+    {
+      "id": "pdf-to-distributions",
+      "source": "pdf",
+      "target": "distributions"
+    },
+    {
+      "id": "cdf-to-distributions",
+      "source": "cdf",
+      "target": "distributions"
+    },
+    {
+      "id": "moments-to-distributions",
+      "source": "moments",
+      "target": "distributions"
+    },
+
+    {
+      "id": "dist-to-discrete",
+      "source": "distributions",
+      "target": "discrete-distributions"
+    },
+    {
+      "id": "dist-to-continuous",
+      "source": "distributions",
+      "target": "continuous-distributions"
+    },
+
+    {
+      "id": "discrete-to-binomial",
+      "source": "discrete-distributions",
+      "target": "binomial"
+    },
+    {
+      "id": "discrete-to-poisson",
+      "source": "discrete-distributions",
+      "target": "poisson"
+    },
+    {
+      "id": "discrete-to-geometric",
+      "source": "discrete-distributions",
+      "target": "geometric"
+    },
+    {
+      "id": "continuous-to-normal",
+      "source": "continuous-distributions",
+      "target": "normal"
+    },
+    {
+      "id": "continuous-to-exponential",
+      "source": "continuous-distributions",
+      "target": "exponential"
+    },
+    {
+      "id": "continuous-to-uniform",
+      "source": "continuous-distributions",
+      "target": "uniform"
+    },
+
+    {
+      "id": "distributions-to-joint",
+      "source": "distributions",
+      "target": "joint-distributions"
+    },
+
+    {
+      "id": "joint-to-covariance",
+      "source": "joint-distributions",
+      "target": "covariance"
+    },
+    {
+      "id": "joint-to-correlation",
+      "source": "joint-distributions",
+      "target": "correlation"
+    },
+
+    { "id": "normal-to-limit", "source": "normal", "target": "limit-theorems" },
+    {
+      "id": "dist-to-limit",
+      "source": "distributions",
+      "target": "limit-theorems"
+    },
+
+    {
+      "id": "limit-to-lln",
+      "source": "limit-theorems",
+      "target": "law-large-numbers"
+    },
+    {
+      "id": "limit-to-clt",
+      "source": "limit-theorems",
+      "target": "central-limit"
+    },
+
+    {
+      "id": "limit-to-inference",
+      "source": "limit-theorems",
+      "target": "statistical-inference"
+    },
+
+    {
+      "id": "inference-to-sampling",
+      "source": "statistical-inference",
+      "target": "sampling"
+    },
+    {
+      "id": "inference-to-point",
+      "source": "statistical-inference",
+      "target": "point-estimation"
+    },
+    {
+      "id": "inference-to-interval",
+      "source": "statistical-inference",
+      "target": "interval-estimation"
+    },
+
+    {
+      "id": "interval-to-confidence",
+      "source": "interval-estimation",
+      "target": "confidence-intervals"
+    },
+    {
+      "id": "inference-to-hypothesis",
+      "source": "statistical-inference",
+      "target": "hypothesis-testing"
+    },
+    {
+      "id": "hypothesis-to-parameter",
+      "source": "hypothesis-testing",
+      "target": "parameter-tests"
+    },
+
+    {
+      "id": "inference-to-regression",
+      "source": "statistical-inference",
+      "target": "regression"
+    },
+
+    {
+      "id": "regression-to-linear",
+      "source": "regression",
+      "target": "linear-regression"
+    },
+    {
+      "id": "regression-to-multiple",
+      "source": "regression",
+      "target": "multiple-regression"
+    }
+  ]
+}
