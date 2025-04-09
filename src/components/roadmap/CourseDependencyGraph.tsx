@@ -2,7 +2,6 @@ import { useCallback, useState, useEffect, useRef } from "react";
 import ReactFlow, {
   Background,
   Controls,
-  MiniMap,
   useReactFlow,
   ReactFlowProvider,
   Panel,
@@ -151,7 +150,6 @@ const CourseDependencyGraphContent = ({
       >
         <Background />
         <Controls showInteractive={false} />
-        <MiniMap />
 
         {/* Responsive Controls Panel */}
         <Panel position="top-right" className="flex flex-col md:flex-row gap-2">
