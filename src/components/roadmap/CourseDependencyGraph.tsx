@@ -7,13 +7,7 @@ import ReactFlow, {
   Panel,
 } from "reactflow";
 import "reactflow/dist/style.css";
-import {
-  FiRefreshCw,
-  FiLock,
-  FiUnlock,
-  FiMove,
-  FiZoomIn,
-} from "react-icons/fi";
+import { FiRefreshCw, FiMove } from "react-icons/fi";
 
 // Define MarkerType enum that matches ReactFlow's MarkerType
 enum MarkerType {
@@ -56,9 +50,7 @@ const CourseDependencyGraphContent = ({
   nodes,
   edges,
 }: CourseDependencyGraphProps) => {
-  const [nodesDraggable, setNodesDraggable] = useState(true);
   const [panningEnabled, setPanningEnabled] = useState(true);
-  const [zoomingEnabled, setZoomingEnabled] = useState(true);
   const reactFlowInstance = useReactFlow();
   const reactFlowWrapper = useRef<HTMLDivElement>(null);
 
@@ -99,16 +91,8 @@ const CourseDependencyGraphContent = ({
     });
   }, [reactFlowInstance]);
 
-  const toggleDragging = useCallback(() => {
-    setNodesDraggable((prev) => !prev);
-  }, []);
-
   const togglePanning = useCallback(() => {
     setPanningEnabled((prev) => !prev);
-  }, []);
-
-  const toggleZooming = useCallback(() => {
-    setZoomingEnabled((prev) => !prev);
   }, []);
 
   // Responsive button styles
@@ -134,12 +118,12 @@ const CourseDependencyGraphContent = ({
         nodes={nonConnectableNodes}
         edges={enhancedEdges}
         defaultEdgeOptions={defaultEdgeOptions}
-        nodesDraggable={nodesDraggable}
+        nodesDraggable={false}
         panOnScroll={panningEnabled}
-        zoomOnScroll={zoomingEnabled}
+        zoomOnScroll={true}
         panOnDrag={panningEnabled}
-        zoomOnPinch={zoomingEnabled}
-        zoomOnDoubleClick={zoomingEnabled}
+        zoomOnPinch={true}
+        zoomOnDoubleClick={true}
         fitView
         fitViewOptions={{ padding: 0.2 }}
         connectOnClick={false}
@@ -165,22 +149,6 @@ const CourseDependencyGraphContent = ({
 
           <button
             className={buttonClass}
-            onClick={toggleDragging}
-            title={nodesDraggable ? "Lock Nodes" : "Unlock Nodes"}
-            aria-label={nodesDraggable ? "Lock Nodes" : "Unlock Nodes"}
-          >
-            {nodesDraggable ? (
-              <FiUnlock className={buttonIconClass} />
-            ) : (
-              <FiLock className={buttonIconClass} />
-            )}
-            <span className="sr-only md:not-sr-only md:ml-2">
-              {nodesDraggable ? "Lock" : "Unlock"}
-            </span>
-          </button>
-
-          <button
-            className={buttonClass}
             onClick={togglePanning}
             title={panningEnabled ? "Disable Panning" : "Enable Panning"}
             aria-label={panningEnabled ? "Disable Panning" : "Enable Panning"}
@@ -188,18 +156,6 @@ const CourseDependencyGraphContent = ({
             <FiMove className={buttonIconClass} />
             <span className="sr-only md:not-sr-only md:ml-2">
               {panningEnabled ? "Lock Pan" : "Enable Pan"}
-            </span>
-          </button>
-
-          <button
-            className={buttonClass}
-            onClick={toggleZooming}
-            title={zoomingEnabled ? "Disable Zooming" : "Enable Zooming"}
-            aria-label={zoomingEnabled ? "Disable Zooming" : "Enable Zooming"}
-          >
-            <FiZoomIn className={buttonIconClass} />
-            <span className="sr-only md:not-sr-only md:ml-2">
-              {zoomingEnabled ? "Lock Zoom" : "Enable Zoom"}
             </span>
           </button>
         </Panel>
