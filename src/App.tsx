@@ -7,7 +7,6 @@ import {
 import Home from "./pages/Home";
 import Resources from "./pages/Resources";
 import NotFound from "./pages/NotFound";
-import Terms from "./pages/Terms";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Y1F from "./pages/Y1F";
@@ -42,7 +41,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/resources" element={<Resources />} />
-            <Route path="/terms" element={<Terms />} />
             <Route path="/y1f" element={<Y1F />} />
             <Route path="/y1w" element={<Y1W />} />
             <Route path="/y2f" element={<Y2F />} />
