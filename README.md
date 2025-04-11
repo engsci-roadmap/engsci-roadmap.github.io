@@ -1,4 +1,4 @@
-# EngSci Cheatcode Platform
+# EngSci Roadmap Platform
 
 This is the main web application for the EngSci Cheatcode platform, built with React, TypeScript, and Vite.
 
