@@ -1,4 +1,10 @@
+# RAG pipeline dependencies
 sentence-transformers>=2.2.2
 PyMuPDF>=1.21.1
 faiss-cpu>=1.7.4
-numpy>=1.24.0 
+numpy>=1.24.0
+
+# Webscraper dependencies
+requests>=2.30.0
+beautifulsoup4>=4.12.0
+selenium>=4.10.0 

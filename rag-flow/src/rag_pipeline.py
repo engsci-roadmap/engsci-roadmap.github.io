@@ -1,14 +1,15 @@
 """
-RAG Pipeline for Course Documents.
+RAG Pipeline for Course Documents with Question-Level Topic Tagging.
 
 This script implements a Retrieval-Augmented Generation (RAG) pipeline for 
-course documents using local free models and tools.
+course documents using local free models and tools. It extracts individual questions
+from assignments, tests, and exams, and tags them with topic, question type, and source.
 """
 import os
 import json
 import glob
 import subprocess
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Tuple
 
 import fitz  # PyMuPDF
 import faiss
@@ -21,26 +22,37 @@ MODEL_NAME = "all-MiniLM-L6-v2"  # Free, lightweight model available in sentence
 CHUNK_SIZE = 1000  # Number of characters per chunk
 CHUNK_OVERLAP = 200  # Number of characters overlapping between chunks
 
-# Prompt template for the LLM
+# Prompt template for the LLM - updated for question-level tagging
 PROMPT_TEMPLATE = """
-You are an academic assistant helping summarize university-level course documents. These include exams, quizzes, and assignments. Based on the provided document content, extract structured insights using the format below.
+You are an academic assistant helping analyze university-level course documents. These include exams, tests, assignments, and quizzes.
 
+IMPORTANT: Extract ONLY REAL questions that actually appear in the provided document text below. DO NOT invent or make up questions. If you cannot find clear questions in the text, return an empty list.
+
+For each real question you find in the text, extract:
+1. The exact question text as it appears in the document
+2. The main topics it tests (based on the question content)
+3. The question type (proof, calculation, conceptual, multiple choice, etc.)
+4. The source document name (provided at the beginning of each document chunk)
+
+Document text to analyze:
 {document_content}
 
 Return only a valid JSON object with the following format:
 
 {{
   "response": {{
-    "answer": "A natural language summary that combines insights from the documents.",
-    "topicsCovered": [ "Topic 1", "Topic 2" ],
-    "questionTypes": [ "Proof", "Multiple Choice", "Derivation" ],
-    "studySuggestions": [ "Review problem types from Quiz1.pdf", "Focus on derivations in Exam2022.pdf" ],
-    "documentLinks": [
-      {{ "documentName": "Quiz1.pdf", "documentUrl": "http://localhost/data/CIV102/Quiz1.pdf" }},
-      {{ "documentName": "Exam2022.pdf", "documentUrl": "http://localhost/data/CIV102/Exam2022.pdf" }}
+    "taggedQuestions": [
+      {{
+        "questionText": "The exact question text from the document",
+        "topicsTested": ["Topic 1", "Topic 2"],
+        "questionType": "The question type",
+        "source": "The source filename"
+      }}
     ]
   }}
 }}
+
+If no clear questions are found, return an empty list of taggedQuestions.
 """
 
 
@@ -53,6 +65,14 @@ class Document:
         self.filename = os.path.basename(path)
         self.course_code = os.path.basename(os.path.dirname(path))
         self.url = f"http://localhost/data/{self.course_code}/{self.filename}"
+
+
+class DocumentChunk:
+    """Represents a chunk of text from a document with source metadata."""
+    
+    def __init__(self, text: str, source_doc: Document):
+        self.text = text
+        self.source_doc = source_doc
 
 
 def extract_text(pdf_path: str) -> str:
@@ -74,42 +94,53 @@ def extract_text(pdf_path: str) -> str:
         return ""
 
 
-def chunk_text(text: str, chunk_size: int = CHUNK_SIZE, chunk_overlap: int = CHUNK_OVERLAP) -> List[str]:
+def chunk_text(text: str, source_doc: Document, chunk_size: int = CHUNK_SIZE, 
+              chunk_overlap: int = CHUNK_OVERLAP) -> List[DocumentChunk]:
     """
-    Split text into chunks for processing.
+    Split text into chunks for processing, preserving source document info.
     
     Args:
         text: Text to chunk
+        source_doc: Source document object
         chunk_size: Size of each chunk in characters
         chunk_overlap: Overlap between chunks in characters
         
     Returns:
-        List of text chunks
+        List of DocumentChunk objects
     """
     if not text:
         return []
         
     chunks = []
     for i in range(0, len(text), chunk_size - chunk_overlap):
-        chunk = text[i:i + chunk_size]
-        if chunk:
-            chunks.append(chunk)
+        chunk_text = text[i:i + chunk_size]
+        if chunk_text:
+            chunks.append(DocumentChunk(chunk_text, source_doc))
     
     return chunks
 
 
-def process_course_pdfs(course_code: str) -> List[Document]:
+def process_course_pdfs(course_code: str, max_documents: int = None) -> List[Document]:
     """
-    Process all PDFs for a given course code.
+    Process PDFs for a given course code, optionally limiting the number of documents.
     
     Args:
         course_code: Course code to process
+        max_documents: Maximum number of documents to process (None for all)
         
     Returns:
         List of Document objects
     """
     course_dir = os.path.join(DATA_DIR, course_code)
     pdf_files = glob.glob(os.path.join(course_dir, "*.pdf"))
+    
+    # Sort files to ensure consistent results when limiting documents
+    pdf_files.sort()
+    
+    # Limit number of documents if specified
+    if max_documents is not None and max_documents > 0:
+        pdf_files = pdf_files[:max_documents]
+        print(f"Using {len(pdf_files)} out of {len(glob.glob(os.path.join(course_dir, '*.pdf')))} documents")
     
     documents = []
     for pdf_path in pdf_files:
@@ -122,63 +153,60 @@ def process_course_pdfs(course_code: str) -> List[Document]:
 
 def create_vector_store(documents: List[Document]) -> tuple:
     """
-    Create a FAISS vector store from documents.
+    Create a FAISS vector store from documents, preserving source information.
     
     Args:
         documents: List of Document objects
         
     Returns:
-        Tuple of (FAISS index, embedder model, document chunks, document mapping)
+        Tuple of (FAISS index, embedder model, document chunks list, chunk IDs)
     """
     model = SentenceTransformer(MODEL_NAME)
     
-    # Create document chunks
-    chunks = []
-    chunk_to_doc_map = {}
+    # Create document chunks with source metadata
+    doc_chunks = []
     
-    for i, doc in enumerate(documents):
-        doc_chunks = chunk_text(doc.content)
-        for j, chunk in enumerate(doc_chunks):
-            chunk_id = len(chunks)
-            chunks.append(chunk)
-            chunk_to_doc_map[chunk_id] = i
+    for doc in documents:
+        chunks = chunk_text(doc.content, doc)
+        doc_chunks.extend(chunks)
     
-    # Create embeddings
-    if not chunks:
+    # Create embeddings for the text portion of chunks
+    if not doc_chunks:
         print("No chunks to embed")
         return None, None, [], {}
-        
-    embeddings = model.encode(chunks, convert_to_tensor=False)
+    
+    chunk_texts = [chunk.text for chunk in doc_chunks]
+    embeddings = model.encode(chunk_texts, convert_to_tensor=False)
     
     # Create FAISS index
     dimension = embeddings.shape[1]
     index = faiss.IndexFlatL2(dimension)
     index.add(np.array(embeddings).astype('float32'))
     
-    return index, model, chunks, chunk_to_doc_map
+    return index, model, doc_chunks, None
 
 
-def query_vector_store(query: str, index, model, chunks: List[str], top_k: int = 5) -> List[str]:
+def query_vector_store(query: str, index, model, doc_chunks: List[DocumentChunk], top_k: int = 10) -> List[DocumentChunk]:
     """
-    Query the vector store for relevant chunks.
+    Query the vector store for relevant chunks, preserving source metadata.
     
     Args:
         query: Query string
         index: FAISS index
         model: SentenceTransformer model
-        chunks: List of text chunks
-        top_k: Number of top results to retrieve
+        doc_chunks: List of DocumentChunk objects
+        top_k: Number of top results to retrieve (increased to 10)
         
     Returns:
-        List of relevant text chunks
+        List of relevant DocumentChunk objects
     """
     query_embedding = model.encode([query], convert_to_tensor=False)
     scores, indices = index.search(np.array(query_embedding).astype('float32'), k=top_k)
     
     results = []
     for idx in indices[0]:
-        if idx < len(chunks):
-            results.append(chunks[idx])
+        if idx < len(doc_chunks):
+            results.append(doc_chunks[idx])
     
     return results
 
@@ -253,19 +281,34 @@ def parse_response(response_text: str) -> Dict[str, Any]:
             return {"error": "Could not parse JSON", "raw_response": response_text}
 
 
-def process_query(query: str, course_code: str) -> Dict[str, Any]:
+def format_chunk_with_source(chunk: DocumentChunk) -> str:
     """
-    Process a query for a specific course.
+    Format a document chunk with its source information for the LLM.
+    
+    Args:
+        chunk: DocumentChunk object
+        
+    Returns:
+        Formatted text with source annotation
+    """
+    return f"Document: {chunk.source_doc.filename}\n\n{chunk.text}\n\n---\n\n"
+
+
+def process_query(query: str, course_code: str, max_documents: int = None, top_k: int = 15) -> Dict[str, Any]:
+    """
+    Process a query for a specific course to extract and tag questions.
     
     Args:
         query: User query
         course_code: Course code to query
+        max_documents: Maximum number of documents to process (None for all)
+        top_k: Number of top chunks to retrieve
         
     Returns:
-        JSON response
+        JSON response with tagged questions
     """
     # Get documents for the course
-    documents = process_course_pdfs(course_code)
+    documents = process_course_pdfs(course_code, max_documents)
     if not documents:
         return {"error": f"No documents found for course {course_code}"}
     
@@ -274,15 +317,15 @@ def process_query(query: str, course_code: str) -> Dict[str, Any]:
     if not vector_store[0]:
         return {"error": "Failed to create vector store"}
     
-    index, model, chunks, chunk_to_doc_map = vector_store
+    index, model, doc_chunks, _ = vector_store
     
-    # Query vector store
-    relevant_chunks = query_vector_store(query, index, model, chunks)
+    # Query vector store with more chunks to ensure we capture questions
+    relevant_chunks = query_vector_store(query, index, model, doc_chunks, top_k=top_k)
     if not relevant_chunks:
         return {"error": "No relevant content found for the query"}
     
-    # Prepare document content for the LLM
-    document_content = "\n".join(relevant_chunks)
+    # Prepare document content for the LLM with source annotations
+    document_content = "\n".join(format_chunk_with_source(chunk) for chunk in relevant_chunks)
     
     # Create prompt for the LLM
     prompt = PROMPT_TEMPLATE.format(document_content=document_content)
@@ -293,30 +336,65 @@ def process_query(query: str, course_code: str) -> Dict[str, Any]:
     # Parse response
     parsed_response = parse_response(llm_response)
     
-    # Add document links if not present
-    if "response" in parsed_response and "documentLinks" not in parsed_response["response"]:
-        parsed_response["response"]["documentLinks"] = [
-            {"documentName": doc.filename, "documentUrl": doc.url}
-            for doc in documents[:5]  # Limit to 5 documents
-        ]
+    # Ensure we have the expected structure
+    if "response" in parsed_response and "taggedQuestions" not in parsed_response["response"]:
+        # Add empty taggedQuestions if not present
+        parsed_response["response"]["taggedQuestions"] = []
     
     return parsed_response
+
+
+def save_tagged_questions(course_code: str, tagged_questions: List[Dict]) -> str:
+    """
+    Save tagged questions to a JSON file in the course directory.
+    
+    Args:
+        course_code: Course code
+        tagged_questions: List of tagged question objects
+        
+    Returns:
+        Path to the saved file
+    """
+    output_dir = os.path.join(DATA_DIR, course_code)
+    os.makedirs(output_dir, exist_ok=True)
+    
+    output_file = os.path.join(output_dir, "tagged_questions.json")
+    
+    with open(output_file, 'w') as f:
+        json.dump({"taggedQuestions": tagged_questions}, f, indent=2)
+    
+    return output_file
 
 
 def main():
     """Main entry point."""
     import argparse
     
-    parser = argparse.ArgumentParser(description="RAG Pipeline for Course Documents")
+    parser = argparse.ArgumentParser(description="RAG Pipeline for Question-Level Topic Tagging")
     parser.add_argument("--course", required=True, help="Course code to query")
-    parser.add_argument("--query", default="Summarize the course materials", 
-                        help="Query to run (default: 'Summarize the course materials')")
+    parser.add_argument("--query", default="Extract and tag all questions", 
+                        help="Query to run (default: 'Extract and tag all questions')")
     parser.add_argument("--output", help="Output file path (JSON)")
+    parser.add_argument("--save", action="store_true", 
+                        help="Save output to data/<course_code>/tagged_questions.json")
+    parser.add_argument("--max-documents", type=int, 
+                        help="Maximum number of documents to process (default: all)")
+    parser.add_argument("--top-k", type=int, default=15,
+                        help="Number of chunks to retrieve (default: 15)")
     
     args = parser.parse_args()
     
     print(f"Processing query '{args.query}' for course {args.course}")
-    result = process_query(args.query, args.course)
+    result = process_query(
+        query=args.query, 
+        course_code=args.course, 
+        max_documents=args.max_documents,
+        top_k=args.top_k
+    )
+    
+    if args.save and "response" in result and "taggedQuestions" in result["response"]:
+        output_file = save_tagged_questions(args.course, result["response"]["taggedQuestions"])
+        print(f"Tagged questions saved to {output_file}")
     
     if args.output:
         with open(args.output, 'w') as f:
