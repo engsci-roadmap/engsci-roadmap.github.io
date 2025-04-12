@@ -22,7 +22,7 @@ export interface ResourceFile {
 export interface CourseResources {
   courseCode: string;
   courseName: string;
-  cheatsheet: ResourceFile;
-  processSheet: ResourceFile;
-  externalLinks: ExternalLink[];
+  cheatsheet?: ResourceFile;
+  processSheet?: ResourceFile;
+  externalLinks?: ExternalLink[];
 }
