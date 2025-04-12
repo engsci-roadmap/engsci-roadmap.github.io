@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { FaRoad, FaQuestion, FaNetworkWired, FaBook } from "react-icons/fa";
+import { FaRoad, FaQuestion, FaBook, FaGraduationCap } from "react-icons/fa";
 
 // Define semester structure type
 type SemesterData = {
@@ -164,15 +164,15 @@ const Home = () => {
 
             <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center sm:items-start sm:flex-row">
               <div className="bg-blue-100 p-4 rounded-full mb-4 sm:mb-0 sm:mr-6">
-                <FaNetworkWired className="text-blue-700 text-3xl" />
+                <FaGraduationCap className="text-blue-700 text-3xl" />
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2 text-gray-800">
-                  Interactive Flow Navigation
+                  Major Navigation
                 </h3>
                 <p className="text-gray-600">
-                  Navigate visually through course dependencies and build a
-                  stronger mental model.
+                  See how concepts from first and second year connect to
+                  third-year major courses to help plan your academic journey.
                 </p>
               </div>
             </div>
