@@ -55,7 +55,6 @@ interface CourseDependencyGraphProps {
 const CourseDependencyGraphContent = ({
   nodes,
   edges,
-  title,
   semester,
 }: CourseDependencyGraphProps) => {
   const [panningEnabled, setPanningEnabled] = useState(true);
