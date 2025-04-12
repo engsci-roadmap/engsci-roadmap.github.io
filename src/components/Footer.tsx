@@ -30,14 +30,6 @@ const Footer = () => {
                   Y2W
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/resources"
-                  className="text-gray-400 hover:text-white"
-                >
-                  Resources
-                </Link>
-              </li>
             </ul>
           </div>
 
