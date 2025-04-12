@@ -134,7 +134,7 @@ const Contribute = () => {
 
           <div className="flex justify-center">
             <a
-              href="https://github.com/hanheelee/engsci-cheatcode/issues"
+              href="https://github.com/engsci-roadmap/engsci-roadmap.github.io/issues"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-blue-700 text-white px-6 py-3 rounded-md flex items-center hover:bg-blue-800 transition-colors"
