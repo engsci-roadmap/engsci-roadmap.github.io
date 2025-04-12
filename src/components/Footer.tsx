@@ -1,4 +1,4 @@
-import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaEnvelope, FaDiscord } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -63,6 +63,16 @@ const Footer = () => {
                   className="text-gray-400 hover:text-white flex items-center"
                 >
                   <FaGithub className="mr-2" /> GitHub
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://discord.com/users/hylee26"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white flex items-center"
+                >
+                  <FaDiscord className="mr-2" /> Discord
                 </a>
               </li>
             </ul>
