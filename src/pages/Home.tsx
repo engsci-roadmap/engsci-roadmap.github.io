@@ -12,9 +12,24 @@ type SemesterData = {
   }[];
 };
 
+// Define the list of majors (keep in sync with Majors.tsx)
+const majors = [
+  { id: "BME", slug: "bme", name: "Biomedical" },
+  { id: "MI", slug: "mi", name: "Machine Intelligence" },
+  { id: "ECE", slug: "ece", name: "Electrical & Computer" },
+  { id: "AERO", slug: "aero", name: "Aerospace" },
+  { id: "ROB", slug: "robo", name: "Robotics" },
+  { id: "MSF", slug: "msf", name: "Mathematics, Statistics & Finance" },
+  { id: "ES", slug: "energy", name: "Energy Systems" },
+  { id: "EP", slug: "engphys", name: "Engineering Physics" },
+];
+
 const Home = () => {
   // Reference for semester section (for scroll functionality)
   const semesterSectionRef = useRef<HTMLDivElement>(null);
+  const majorSectionRef = useRef<HTMLDivElement>(null);
+  const featuresRef = useRef<HTMLDivElement>(null);
+  const contributeRef = useRef<HTMLDivElement>(null);
 
   // State for semester data
   const [semesters, setSemesters] = useState<SemesterData[]>([
@@ -64,6 +79,21 @@ const Home = () => {
     semesterSectionRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Function to scroll to major section
+  const scrollToMajors = () => {
+    majorSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Function to scroll to features section
+  const scrollToFeatures = () => {
+    featuresRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Function to scroll to contribute section
+  const scrollToContribute = () => {
+    contributeRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -73,25 +103,51 @@ const Home = () => {
           <p className="text-xl md:text-2xl mb-6">
             The way to get the most out of your EngSci courses.
           </p>
-          <p className="text-lg mb-10 max-w-3xl mx-auto">
+          <p className="text-lg mb-8 max-w-3xl mx-auto">
             Break down of U of T EngSci Year 1 & 2 courses into topic roadmaps,
             curated questions, cheatsheets, and process sheets.
           </p>
-          <button
-            onClick={scrollToSemesters}
-            className="bg-white text-blue-700 font-semibold py-3 px-8 rounded-md shadow-md hover:bg-blue-50 transition-colors duration-300"
-          >
-            Start Exploring
-          </button>
+
+          {/* Navigation buttons in a grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+            <button
+              onClick={scrollToSemesters}
+              className="bg-white text-blue-700 font-semibold py-3 px-8 rounded-md shadow-md hover:bg-blue-50 transition-colors duration-300"
+            >
+              Explore by Semester
+            </button>
+            <button
+              onClick={scrollToMajors}
+              className="bg-blue-600 text-white font-semibold py-3 px-8 rounded-md shadow-md hover:bg-blue-700 transition-colors duration-300 border border-white"
+            >
+              Explore by Major
+            </button>
+            <button
+              onClick={scrollToFeatures}
+              className="bg-transparent text-white font-semibold py-3 px-8 rounded-md border border-white hover:bg-blue-600 transition-colors duration-300"
+            >
+              What's Inside
+            </button>
+            <button
+              onClick={scrollToContribute}
+              className="bg-transparent text-white font-semibold py-3 px-8 rounded-md border border-white hover:bg-blue-600 transition-colors duration-300"
+            >
+              Contribute
+            </button>
+          </div>
         </div>
       </section>
 
       {/* Semester Navigation Section */}
       <section ref={semesterSectionRef} className="py-16 px-4 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+          <h2 className="text-3xl font-bold text-center mb-4 text-gray-800">
             Choose Your Semester
           </h2>
+          <p className="text-center text-gray-600 max-w-3xl mx-auto mb-10">
+            Find cheatsheets, process sheets, external resources, roadmaps, and
+            practice questions for each course.
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {semesters.map((semester) => (
               <div
@@ -132,12 +188,42 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Feature Overview Section */}
-      <section className="py-16 px-4">
+      {/* Major Navigation Section */}
+      <section ref={majorSectionRef} className="py-16 px-4 bg-white">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+          <h2 className="text-3xl font-bold text-center mb-4 text-gray-800">
+            Choose Your Major
+          </h2>
+          <p className="text-center text-gray-600 max-w-3xl mx-auto mb-10">
+            Discover how Y1/Y2 course topics connect to your future major
+            courses.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {majors.map((major) => (
+              <Link
+                key={major.id}
+                to={`/majors/${major.slug}`}
+                className="bg-blue-50 hover:bg-blue-100 rounded-lg shadow-md p-6 transition-all hover:shadow-lg text-center"
+              >
+                <div className="font-bold text-xl text-blue-800 mb-2">
+                  {major.name}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Feature Overview Section */}
+      <section ref={featuresRef} className="py-16 px-4 bg-gray-50">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl font-bold text-center mb-4 text-gray-800">
             What's Inside
           </h2>
+          <p className="text-center text-gray-600 max-w-3xl mx-auto mb-10">
+            Explore the different features designed to help you succeed in your
+            Engineering Science courses.
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center sm:items-start sm:flex-row">
               <div className="bg-blue-100 p-4 rounded-full mb-4 sm:mb-0 sm:mr-6">
@@ -203,11 +289,15 @@ const Home = () => {
       </section>
 
       {/* Call to Action Section */}
-      <section className="bg-gray-100 py-16 px-4">
+      <section ref={contributeRef} className="bg-gray-100 py-16 px-4">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold mb-8 text-gray-800">
+          <h2 className="text-3xl font-bold mb-4 text-gray-800">
             Want to help improve this?
           </h2>
+          <p className="text-gray-600 max-w-3xl mx-auto mb-8">
+            Join our community of contributors and help us make this resource
+            even better for future EngSci students.
+          </p>
           <div className="flex justify-center">
             <Link
               to="/contribute"
