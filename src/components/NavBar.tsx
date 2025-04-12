@@ -73,6 +73,12 @@ const NavBar = () => {
             <Link to="/majors" className="px-3 py-2 hover:bg-blue-700 rounded">
               Majors
             </Link>
+            <Link
+              to="/internships"
+              className="px-3 py-2 hover:bg-blue-700 rounded"
+            >
+              Internships
+            </Link>
             <Link to="/y1f" className="px-3 py-2 hover:bg-blue-700 rounded">
               Y1F
             </Link>
@@ -108,6 +114,13 @@ const NavBar = () => {
             onClick={toggleMenu}
           >
             Majors
+          </Link>
+          <Link
+            to="/internships"
+            className="px-3 py-2 hover:bg-blue-700 rounded"
+            onClick={toggleMenu}
+          >
+            Internships
           </Link>
           <Link
             to="/y1f"
