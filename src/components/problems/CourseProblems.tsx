@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getProblemsData } from "../../utils/courseDataUtils";
 import { FaArrowLeft } from "react-icons/fa";
 
@@ -32,7 +32,8 @@ const CourseProblems = ({ courseCode, semester }: CourseProblemsProps) => {
         });
 
         const problems = getProblemsData(problemsModule.default);
-        setTopics(problems);
+        // Cast problems to ensure all items have a label string
+        setTopics(problems as TopicWithQuestions[]);
       } catch (err) {
         console.error("Error loading problems:", err);
         setError(

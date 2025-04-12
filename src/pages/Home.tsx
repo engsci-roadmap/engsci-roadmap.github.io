@@ -27,8 +27,15 @@ const Home = () => {
   // Fetch course codes for each semester
   useEffect(() => {
     const fetchSemesterData = async () => {
+      const semesterTemplates = [
+        { id: "y1f", title: "Year 1 Fall" },
+        { id: "y1w", title: "Year 1 Winter" },
+        { id: "y2f", title: "Year 2 Fall" },
+        { id: "y2w", title: "Year 2 Winter" },
+      ];
+
       const updatedSemesters = await Promise.all(
-        semesters.map(async (semester) => {
+        semesterTemplates.map(async (semester) => {
           try {
             // Dynamically import the JSON data
             const data = await import(
@@ -42,7 +49,7 @@ const Home = () => {
             return { ...semester, courses };
           } catch (error) {
             console.error(`Error loading ${semester.id} data:`, error);
-            return semester;
+            return { ...semester, courses: [] };
           }
         })
       );
@@ -68,7 +75,7 @@ const Home = () => {
           </p>
           <p className="text-lg mb-10 max-w-3xl mx-auto">
             Break down of U of T EngSci Year 1 & 2 courses into topic roadmaps,
-            curated questions, cheatsheets, and process sheets. 
+            curated questions, cheatsheets, and process sheets.
           </p>
           <button
             onClick={scrollToSemesters}
