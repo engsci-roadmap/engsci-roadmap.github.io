@@ -62,7 +62,7 @@ const Home = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-blue-900 to-blue-700 text-white py-20 px-4">
         <div className="container mx-auto max-w-4xl text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">NΨ Cheatcode</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">NΨ Roadmap</h1>
           <p className="text-xl md:text-2xl mb-6">
             The way to get the most out of your EngSci courses.
           </p>
