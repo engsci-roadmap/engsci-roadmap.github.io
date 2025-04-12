@@ -5,9 +5,11 @@ import ReactFlow, {
   useReactFlow,
   ReactFlowProvider,
   Panel,
+  Node,
 } from "reactflow";
 import "reactflow/dist/style.css";
 import { FiRefreshCw, FiMove } from "react-icons/fi";
+import SidebarDrawer from "./SidebarDrawer";
 
 // Define MarkerType enum that matches ReactFlow's MarkerType
 enum MarkerType {
@@ -18,6 +20,7 @@ enum MarkerType {
 // Custom types that match our JSON structure
 export type NodeData = {
   label: string;
+  questions?: string[];
 };
 
 export type NodePosition = {
@@ -51,6 +54,7 @@ const CourseDependencyGraphContent = ({
   edges,
 }: CourseDependencyGraphProps) => {
   const [panningEnabled, setPanningEnabled] = useState(true);
+  const [selectedNode, setSelectedNode] = useState<Node<NodeData> | null>(null);
   const reactFlowInstance = useReactFlow();
   const reactFlowWrapper = useRef<HTMLDivElement>(null);
 
@@ -95,6 +99,17 @@ const CourseDependencyGraphContent = ({
     setPanningEnabled((prev) => !prev);
   }, []);
 
+  const onNodeClick = useCallback(
+    (_: React.MouseEvent, node: Node<NodeData>) => {
+      setSelectedNode(node);
+    },
+    []
+  );
+
+  const closeSidebar = useCallback(() => {
+    setSelectedNode(null);
+  }, []);
+
   // Responsive button styles
   const buttonClass =
     "flex items-center justify-center p-2 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-800 transition-colors shadow-sm";
@@ -127,10 +142,11 @@ const CourseDependencyGraphContent = ({
         fitView
         fitViewOptions={{ padding: 0.2 }}
         connectOnClick={false}
-        nodesFocusable={false}
+        nodesFocusable={true}
         edgesFocusable={false}
-        elementsSelectable={false}
+        elementsSelectable={true}
         nodesConnectable={false}
+        onNodeClick={onNodeClick}
       >
         <Background />
         <Controls showInteractive={false} />
@@ -160,6 +176,14 @@ const CourseDependencyGraphContent = ({
           </button>
         </Panel>
       </ReactFlow>
+
+      {/* Sidebar Drawer for Practice Questions */}
+      <SidebarDrawer
+        isOpen={selectedNode !== null}
+        onClose={closeSidebar}
+        topic={selectedNode?.data.label || ""}
+        questions={selectedNode?.data.questions || []}
+      />
     </div>
   );
 };

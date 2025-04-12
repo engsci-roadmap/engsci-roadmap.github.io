@@ -3,25 +3,57 @@
     {
       "id": "intro",
       "type": "default",
-      "data": { "label": "Introduction to Programming" },
+      "data": {
+        "label": "Introduction to Programming",
+        "questions": [
+          "What are the basic components of a computer program?",
+          "Explain the difference between compiled and interpreted languages.",
+          "What is Python and why is it popular for beginners?",
+          "Describe the typical development workflow when writing a program."
+        ]
+      },
       "position": { "x": 250, "y": 0 }
     },
     {
       "id": "variables",
       "type": "default",
-      "data": { "label": "Variables and Data Types" },
+      "data": {
+        "label": "Variables and Data Types",
+        "questions": [
+          "What are the primary data types in Python?",
+          "How does type conversion work in Python?",
+          "What's the difference between mutable and immutable data types?",
+          "How do you determine the data type of a variable in Python?"
+        ]
+      },
       "position": { "x": 100, "y": 100 }
     },
     {
       "id": "control",
       "type": "default",
-      "data": { "label": "Control Flow" },
+      "data": {
+        "label": "Control Flow",
+        "questions": [
+          "What are the three main control flow structures in programming?",
+          "How do you write a conditional statement with multiple conditions?",
+          "Explain the difference between a while loop and a for loop.",
+          "How do you exit a loop prematurely in Python?"
+        ]
+      },
       "position": { "x": 400, "y": 100 }
     },
     {
       "id": "functions",
       "type": "default",
-      "data": { "label": "Functions" },
+      "data": {
+        "label": "Functions",
+        "questions": [
+          "What is the purpose of a function in programming?",
+          "How do you define a function with parameters in Python?",
+          "What's the difference between parameters and arguments?",
+          "Explain the concept of a return value in functions."
+        ]
+      },
       "position": { "x": 250, "y": 200 }
     },
     {

@@ -2,28 +2,68 @@
   "nodes": [
     {
       "id": "sets",
-      "data": { "label": "Sets and Counting" },
+      "data": {
+        "label": "Sets and Counting",
+        "questions": [
+          "How do you find the union and intersection of two sets?",
+          "What is the difference between permutation and combination?",
+          "When solving a counting problem, how do you determine whether to use the sum rule or product rule?",
+          "How do you calculate the number of permutations of n objects taken r at a time?"
+        ]
+      },
       "position": { "x": 300, "y": 0 }
     },
     {
       "id": "probability",
-      "data": { "label": "Definitions of Probability" },
+      "data": {
+        "label": "Definitions of Probability",
+        "questions": [
+          "What is the difference between classical, frequentist, and subjective probability?",
+          "How do you calculate probability using the classical approach?",
+          "What are the three axioms of probability?",
+          "How do you determine if two events are mutually exclusive?"
+        ]
+      },
       "position": { "x": 300, "y": 100 }
     },
     {
       "id": "bayes",
-      "data": { "label": "Bayes' Rule" },
+      "data": {
+        "label": "Bayes' Rule",
+        "questions": [
+          "What is the formula for Bayes' Rule?",
+          "How do you apply Bayes' Rule with a confusion matrix?",
+          "What's the difference between prior and posterior probability?",
+          "When calculating the probability of a specific hypothesis given evidence, which formula should you use and why?"
+        ]
+      },
       "position": { "x": 300, "y": 200 }
     },
 
     {
       "id": "random-variables",
-      "data": { "label": "Random Variables and Distributions" },
+      "data": {
+        "label": "Random Variables and Distributions",
+        "questions": [
+          "What is the difference between discrete and continuous random variables?",
+          "How do you derive the CDF from a PDF?",
+          "What does the area under a PDF represent?",
+          "How do you calculate the probability that a random variable falls within a specific range?"
+        ]
+      },
       "position": { "x": 100, "y": 300 }
     },
     {
       "id": "expectations",
-      "data": { "label": "Expectations, Variance, and Covariance" },
+      "data": {
+        "label": "Expectations, Variance, and Covariance",
+        "questions": [
+          "How do you calculate the expected value of a discrete random variable?",
+          "What is the relationship between variance and standard deviation?",
+          "How do you calculate the covariance between two random variables?",
+          "What does a positive covariance indicate about the relationship between two random variables?"
+        ]
+      },
       "position": { "x": 100, "y": 400 }
     },
     {
