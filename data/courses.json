@@ -1,0 +1,267 @@
+[
+  {
+    "id": "MIE286",
+    "label": "Probability & Stats",
+    "topics": [
+      {
+        "id": "bayes",
+        "label": "Bayes' Rule",
+        "relevantTo": [
+          {
+            "majorId": "MI",
+            "linkedCourses": [
+              {
+                "courseCode": "ECE368",
+                "importance": "high"
+              },
+              {
+                "courseCode": "CIV300",
+                "importance": "medium"
+              }
+            ]
+          },
+          {
+            "majorId": "BME",
+            "linkedCourses": [
+              {
+                "courseCode": "BME331",
+                "importance": "high"
+              }
+            ]
+          },
+          {
+            "majorId": "ECE",
+            "linkedCourses": [
+              {
+                "courseCode": "ECE368",
+                "importance": "high"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "regression",
+        "label": "Linear Regression",
+        "relevantTo": [
+          {
+            "majorId": "MI",
+            "linkedCourses": [
+              {
+                "courseCode": "MIE362",
+                "importance": "high"
+              }
+            ]
+          },
+          {
+            "majorId": "MSF",
+            "linkedCourses": [
+              {
+                "courseCode": "APS502",
+                "importance": "high"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MAT292",
+    "label": "Ordinary Differential Equations",
+    "topics": [
+      {
+        "id": "euler",
+        "label": "Euler's Method",
+        "relevantTo": [
+          {
+            "majorId": "AERO",
+            "linkedCourses": [
+              {
+                "courseCode": "AER301",
+                "importance": "high"
+              },
+              {
+                "courseCode": "AER307",
+                "importance": "medium"
+              }
+            ]
+          },
+          {
+            "majorId": "ROB",
+            "linkedCourses": [
+              {
+                "courseCode": "ROB310",
+                "importance": "medium"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "linear-systems",
+        "label": "Linear Systems",
+        "relevantTo": [
+          {
+            "majorId": "ECE",
+            "linkedCourses": [
+              {
+                "courseCode": "ECE356",
+                "importance": "high"
+              }
+            ]
+          },
+          {
+            "majorId": "ROB",
+            "linkedCourses": [
+              {
+                "courseCode": "ROB311",
+                "importance": "high"
+              }
+            ]
+          },
+          {
+            "majorId": "AERO",
+            "linkedCourses": [
+              {
+                "courseCode": "AER372",
+                "importance": "high"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "PHY293",
+    "label": "Waves and Modern Physics",
+    "topics": [
+      {
+        "id": "quantum",
+        "label": "Quantum Mechanics Intro",
+        "relevantTo": [
+          {
+            "majorId": "EP",
+            "linkedCourses": [
+              {
+                "courseCode": "PHY354",
+                "importance": "high"
+              },
+              {
+                "courseCode": "PHY356",
+                "importance": "high"
+              }
+            ]
+          },
+          {
+            "majorId": "ECE",
+            "linkedCourses": [
+              {
+                "courseCode": "ECE330",
+                "importance": "medium"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "waves",
+        "label": "Wave Propagation",
+        "relevantTo": [
+          {
+            "majorId": "EP",
+            "linkedCourses": [
+              {
+                "courseCode": "PHY327",
+                "importance": "high"
+              }
+            ]
+          },
+          {
+            "majorId": "AERO",
+            "linkedCourses": [
+              {
+                "courseCode": "AER302",
+                "importance": "medium"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ESC180",
+    "label": "Introduction to Computer Programming",
+    "topics": [
+      {
+        "id": "algorithms",
+        "label": "Basic Algorithms",
+        "relevantTo": [
+          {
+            "majorId": "MI",
+            "linkedCourses": [
+              {
+                "courseCode": "ECE352",
+                "importance": "high"
+              }
+            ]
+          },
+          {
+            "majorId": "ECE",
+            "linkedCourses": [
+              {
+                "courseCode": "ECE352",
+                "importance": "high"
+              },
+              {
+                "courseCode": "ECE345",
+                "importance": "medium"
+              }
+            ]
+          },
+          {
+            "majorId": "ROB",
+            "linkedCourses": [
+              {
+                "courseCode": "ROB311",
+                "importance": "medium"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ESC190",
+    "label": "Computer Algorithms and Data Structures",
+    "topics": [
+      {
+        "id": "data-structures",
+        "label": "Data Structures",
+        "relevantTo": [
+          {
+            "majorId": "MI",
+            "linkedCourses": [
+              {
+                "courseCode": "ECE352",
+                "importance": "high"
+              }
+            ]
+          },
+          {
+            "majorId": "ECE",
+            "linkedCourses": [
+              {
+                "courseCode": "ECE352",
+                "importance": "high"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
