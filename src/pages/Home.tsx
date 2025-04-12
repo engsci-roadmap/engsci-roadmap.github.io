@@ -171,8 +171,8 @@ const Home = () => {
                   Major Navigation
                 </h3>
                 <p className="text-gray-600">
-                  See how concepts from first and second year connect to
-                  third-year major courses to help plan your academic journey.
+                  See how concepts from 1st/2nd year connect to 3rd year major
+                  courses to help plan your academic journey.
                 </p>
               </div>
             </div>
