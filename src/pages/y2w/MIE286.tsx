@@ -3,7 +3,9 @@ import CourseDependencyGraph, {
   GraphNode,
   GraphEdge,
 } from "../../components/roadmap/CourseDependencyGraph";
-import graphData from "../../data/roadmaps/MIE286.json";
+import roadmapData from "../../data/roadmaps/MIE286.json";
+import problemsData from "../../data/problems/MIE286.json";
+import { mergeCourseData } from "../../utils/courseDataUtils";
 
 type GraphData = {
   nodes: GraphNode[];
@@ -15,15 +17,21 @@ const MIE286 = () => {
   const [edges, setEdges] = useState<GraphEdge[]>([]);
 
   useEffect(() => {
-    // Load the graph data from the JSON file
-    const typedData = graphData as GraphData;
-    setNodes(typedData.nodes);
-    setEdges(typedData.edges);
+    // Merge roadmap data with problems data
+    const mergedData = mergeCourseData(roadmapData as GraphData, problemsData);
+
+    setNodes(mergedData.nodes);
+    setEdges(mergedData.edges);
   }, []);
 
   return (
     <div className="flex flex-col h-[calc(100vh-9rem)]">
-      <CourseDependencyGraph nodes={nodes} edges={edges} title="MIE286" />
+      <CourseDependencyGraph
+        nodes={nodes}
+        edges={edges}
+        title="MIE286"
+        semester="y2w"
+      />
     </div>
   );
 };

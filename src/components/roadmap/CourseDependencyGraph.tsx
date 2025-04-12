@@ -9,6 +9,8 @@ import ReactFlow, {
 } from "reactflow";
 import "reactflow/dist/style.css";
 import { FiRefreshCw, FiMove } from "react-icons/fi";
+import { FaArrowLeft } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import SidebarDrawer from "./SidebarDrawer";
 
 // Define MarkerType enum that matches ReactFlow's MarkerType
@@ -46,12 +48,15 @@ interface CourseDependencyGraphProps {
   nodes: GraphNode[];
   edges: GraphEdge[];
   title?: string;
+  semester?: string;
   initialViewport?: { x: number; y: number; zoom: number };
 }
 
 const CourseDependencyGraphContent = ({
   nodes,
   edges,
+  title,
+  semester,
 }: CourseDependencyGraphProps) => {
   const [panningEnabled, setPanningEnabled] = useState(true);
   const [selectedNode, setSelectedNode] = useState<Node<NodeData> | null>(null);
@@ -125,65 +130,82 @@ const CourseDependencyGraphContent = ({
   };
 
   return (
-    <div
-      ref={reactFlowWrapper}
-      className="w-full h-full border border-slate-300 rounded-lg overflow-hidden"
-    >
-      <ReactFlow
-        nodes={nonConnectableNodes}
-        edges={enhancedEdges}
-        defaultEdgeOptions={defaultEdgeOptions}
-        nodesDraggable={false}
-        panOnScroll={panningEnabled}
-        zoomOnScroll={true}
-        panOnDrag={panningEnabled}
-        zoomOnPinch={true}
-        zoomOnDoubleClick={true}
-        fitView
-        fitViewOptions={{ padding: 0.2 }}
-        connectOnClick={false}
-        nodesFocusable={true}
-        edgesFocusable={false}
-        elementsSelectable={true}
-        nodesConnectable={false}
-        onNodeClick={onNodeClick}
+    <div className="w-full h-full flex flex-col">
+      {semester && (
+        <div className="px-4 sm:px-6 lg:px-8 py-4">
+          <Link
+            to={`/${semester}`}
+            className="inline-flex items-center text-blue-600 hover:text-blue-800"
+          >
+            <FaArrowLeft className="mr-2" />
+            <span>Back to {semester.toUpperCase()}</span>
+          </Link>
+        </div>
+      )}
+
+      <div
+        ref={reactFlowWrapper}
+        className="w-full flex-grow border border-slate-300 rounded-lg overflow-hidden"
       >
-        <Background />
-        <Controls showInteractive={false} />
+        <ReactFlow
+          nodes={nonConnectableNodes}
+          edges={enhancedEdges}
+          defaultEdgeOptions={defaultEdgeOptions}
+          nodesDraggable={false}
+          panOnScroll={panningEnabled}
+          zoomOnScroll={true}
+          panOnDrag={panningEnabled}
+          zoomOnPinch={true}
+          zoomOnDoubleClick={true}
+          fitView
+          fitViewOptions={{ padding: 0.2 }}
+          connectOnClick={false}
+          nodesFocusable={true}
+          edgesFocusable={false}
+          elementsSelectable={true}
+          nodesConnectable={false}
+          onNodeClick={onNodeClick}
+        >
+          <Background />
+          <Controls showInteractive={false} />
 
-        {/* Responsive Controls Panel */}
-        <Panel position="top-right" className="flex flex-col md:flex-row gap-2">
-          <button
-            className={buttonClass}
-            onClick={resetView}
-            title="Reset View"
-            aria-label="Reset View"
+          {/* Responsive Controls Panel */}
+          <Panel
+            position="top-right"
+            className="flex flex-col md:flex-row gap-2"
           >
-            <FiRefreshCw className={buttonIconClass} />
-            <span className="sr-only md:not-sr-only md:ml-2">Reset</span>
-          </button>
+            <button
+              className={buttonClass}
+              onClick={resetView}
+              title="Reset View"
+              aria-label="Reset View"
+            >
+              <FiRefreshCw className={buttonIconClass} />
+              <span className="sr-only md:not-sr-only md:ml-2">Reset</span>
+            </button>
 
-          <button
-            className={buttonClass}
-            onClick={togglePanning}
-            title={panningEnabled ? "Disable Panning" : "Enable Panning"}
-            aria-label={panningEnabled ? "Disable Panning" : "Enable Panning"}
-          >
-            <FiMove className={buttonIconClass} />
-            <span className="sr-only md:not-sr-only md:ml-2">
-              {panningEnabled ? "Lock Pan" : "Enable Pan"}
-            </span>
-          </button>
-        </Panel>
-      </ReactFlow>
+            <button
+              className={buttonClass}
+              onClick={togglePanning}
+              title={panningEnabled ? "Disable Panning" : "Enable Panning"}
+              aria-label={panningEnabled ? "Disable Panning" : "Enable Panning"}
+            >
+              <FiMove className={buttonIconClass} />
+              <span className="sr-only md:not-sr-only md:ml-2">
+                {panningEnabled ? "Lock Pan" : "Enable Pan"}
+              </span>
+            </button>
+          </Panel>
+        </ReactFlow>
 
-      {/* Sidebar Drawer for Practice Questions */}
-      <SidebarDrawer
-        isOpen={selectedNode !== null}
-        onClose={closeSidebar}
-        topic={selectedNode?.data.label || ""}
-        questions={selectedNode?.data.questions || []}
-      />
+        {/* Sidebar Drawer for Practice Questions */}
+        <SidebarDrawer
+          isOpen={selectedNode !== null}
+          onClose={closeSidebar}
+          topic={selectedNode?.data.label || ""}
+          questions={selectedNode?.data.questions || []}
+        />
+      </div>
     </div>
   );
 };

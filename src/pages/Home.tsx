@@ -67,8 +67,8 @@ const Home = () => {
             The way to get the most out of your EngSci courses.
           </p>
           <p className="text-lg mb-10 max-w-3xl mx-auto">
-            We break down U of T EngSci Year 1 & 2 courses into topic roadmaps,
-            curated questions, and interactive study tools.
+            Break down of U of T EngSci Year 1 & 2 courses into topic roadmaps,
+            curated questions, cheatsheets, and process sheets. 
           </p>
           <button
             onClick={scrollToSemesters}

@@ -34,6 +34,11 @@ import ECE259 from "./pages/y2w/ECE259";
 import MIE286 from "./pages/y2w/MIE286";
 import PHY294 from "./pages/y2w/PHY294";
 
+// Problems pages
+import ESC180Problems from "./pages/y1f/problems/ESC180";
+import CIV102Problems from "./pages/y1f/problems/CIV102";
+import MIE286Problems from "./pages/y2w/problems/MIE286";
+
 function App() {
   return (
     <Router>
@@ -67,6 +72,12 @@ function App() {
             <Route path="/y2w/ece259" element={<ECE259 />} />
             <Route path="/y2w/mie286" element={<MIE286 />} />
             <Route path="/y2w/phy294" element={<PHY294 />} />
+
+            {/* Problems routes */}
+            <Route path="/y1f/civ102/problems" element={<CIV102Problems />} />
+            <Route path="/y1f/esc180/problems" element={<ESC180Problems />} />
+            <Route path="/y2w/mie286/problems" element={<MIE286Problems />} />
+
             <Route path="/404" element={<NotFound />} />
             <Route path="*" element={<Navigate to="/404" replace />} />
           </Routes>
