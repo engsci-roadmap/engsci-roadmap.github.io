@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { FaRoad, FaQuestion, FaBook, FaGraduationCap } from "react-icons/fa";
+import { FaRoad, FaQuestion, FaBook } from "react-icons/fa";
 
 // Define semester structure type
 type SemesterData = {
@@ -12,22 +12,9 @@ type SemesterData = {
   }[];
 };
 
-// Define the list of majors (keep in sync with Majors.tsx)
-const majors = [
-  { id: "BME", slug: "bme", name: "Biomedical" },
-  { id: "MI", slug: "mi", name: "Machine Intelligence" },
-  { id: "ECE", slug: "ece", name: "Electrical & Computer" },
-  { id: "AERO", slug: "aero", name: "Aerospace" },
-  { id: "ROB", slug: "robo", name: "Robotics" },
-  { id: "MSF", slug: "msf", name: "Mathematics, Statistics & Finance" },
-  { id: "ES", slug: "energy", name: "Energy Systems" },
-  { id: "EP", slug: "engphys", name: "Engineering Physics" },
-];
-
 const Home = () => {
   // Reference for semester section (for scroll functionality)
   const semesterSectionRef = useRef<HTMLDivElement>(null);
-  const majorSectionRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
   const contributeRef = useRef<HTMLDivElement>(null);
 
@@ -79,11 +66,6 @@ const Home = () => {
     semesterSectionRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Function to scroll to major section
-  const scrollToMajors = () => {
-    majorSectionRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   // Function to scroll to features section
   const scrollToFeatures = () => {
     featuresRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -115,12 +97,6 @@ const Home = () => {
               className="bg-white text-blue-700 font-semibold py-3 px-8 rounded-md shadow-md hover:bg-blue-50 transition-colors duration-300"
             >
               Explore by Semester
-            </button>
-            <button
-              onClick={scrollToMajors}
-              className="bg-blue-600 text-white font-semibold py-3 px-8 rounded-md shadow-md hover:bg-blue-700 transition-colors duration-300 border border-white"
-            >
-              Explore by Major
             </button>
             <button
               onClick={scrollToFeatures}
@@ -188,32 +164,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Major Navigation Section */}
-      <section ref={majorSectionRef} className="py-16 px-4 bg-white">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold text-center mb-4 text-gray-800">
-            Choose Your Major
-          </h2>
-          <p className="text-center text-gray-600 max-w-3xl mx-auto mb-10">
-            Discover how Y1/Y2 course topics connect to your future major
-            courses.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {majors.map((major) => (
-              <Link
-                key={major.id}
-                to={`/majors/${major.slug}`}
-                className="bg-blue-50 hover:bg-blue-100 rounded-lg shadow-md p-6 transition-all hover:shadow-lg text-center"
-              >
-                <div className="font-bold text-xl text-blue-800 mb-2">
-                  {major.name}
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Feature Overview Section */}
       <section ref={featuresRef} className="py-16 px-4 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
@@ -251,21 +201,6 @@ const Home = () => {
                 <p className="text-gray-600">
                   Curated exam/midterm questions for each topic to test your
                   understanding and reinforce learning.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center sm:items-start sm:flex-row">
-              <div className="bg-blue-100 p-4 rounded-full mb-4 sm:mb-0 sm:mr-6">
-                <FaGraduationCap className="text-blue-700 text-3xl" />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2 text-gray-800">
-                  Major Navigation
-                </h3>
-                <p className="text-gray-600">
-                  See how concepts from 1st/2nd year connect to 3rd year major
-                  courses to help plan your academic journey.
                 </p>
               </div>
             </div>
