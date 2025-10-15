@@ -18,7 +18,11 @@ const MIE286 = () => {
 
   useEffect(() => {
     // Merge roadmap data with problems data
-    const mergedData = mergeCourseData(roadmapData as GraphData, problemsData);
+    const mergedData = mergeCourseData(
+      roadmapData as GraphData,
+      problemsData,
+      "MIE286"
+    );
 
     setNodes(mergedData.nodes);
     setEdges(mergedData.edges);

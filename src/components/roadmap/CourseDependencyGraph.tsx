@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect, useRef } from "react";
+import { useCallback, useState, useEffect, useRef, ReactNode } from "react";
 import ReactFlow, {
   Background,
   Controls,
@@ -22,7 +22,7 @@ enum MarkerType {
 // Custom types that match our JSON structure
 export type NodeData = {
   label: string;
-  questions?: string[];
+  questions?: ReactNode[];
 };
 
 export type NodePosition = {

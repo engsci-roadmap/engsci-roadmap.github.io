@@ -4,50 +4,114 @@
       "topicId": "sets",
       "label": "Sets and Counting",
       "questions": [
-        "How do you find the union and intersection of two sets?",
-        "What is the difference between permutation and combination?",
-        "When solving a counting problem, how do you determine whether to use the sum rule or product rule?",
-        "How do you calculate the number of permutations of n objects taken r at a time?"
+        {
+          "problem_id": "2023-MT-Q1",
+          "topic": "Sets",
+          "subtopics": ["Sets", "Mutually Exclusive Events"],
+          "question_type": "Conceptual",
+          "difficulty": "Easy"
+        },
+        {
+          "problem_id": "2022-MT-Q2",
+          "topic": "Counting",
+          "subtopics": ["Counting", "Permutations", "Combinations"],
+          "question_type": "Computation",
+          "difficulty": "Medium"
+        },
+        {
+          "problem_id": "2021-QZ-Q3",
+          "topic": "Counting",
+          "subtopics": ["Sum Rule", "Product Rule"],
+          "question_type": "Conceptual",
+          "difficulty": "Easy"
+        }
       ]
     },
     {
       "topicId": "probability",
       "label": "Definitions of Probability",
       "questions": [
-        "What is the difference between classical, frequentist, and subjective probability?",
-        "How do you calculate probability using the classical approach?",
-        "What are the three axioms of probability?",
-        "How do you determine if two events are mutually exclusive?"
+        {
+          "problem_id": "2023-MT-Q4",
+          "topic": "Definitions of Probability",
+          "subtopics": ["Definitions of Probability", "Sample Space", "Events"],
+          "question_type": "Conceptual",
+          "difficulty": "Medium"
+        },
+        {
+          "problem_id": "2022-QZ-Q5",
+          "topic": "Conditional Probability",
+          "subtopics": ["Conditional Probability", "Independence"],
+          "question_type": "Computation",
+          "difficulty": "Medium"
+        }
       ]
     },
     {
       "topicId": "bayes",
       "label": "Bayes' Rule",
       "questions": [
-        "What is the formula for Bayes' Rule?",
-        "How do you apply Bayes' Rule with a confusion matrix?",
-        "What's the difference between prior and posterior probability?",
-        "When calculating the probability of a specific hypothesis given evidence, which formula should you use and why?"
+        {
+          "problem_id": "2024-MT-Q2",
+          "topic": "Bayes' Rule",
+          "subtopics": ["Bayes' Rule", "Law of Total Probability"],
+          "question_type": "Computation",
+          "difficulty": "Medium"
+        },
+        {
+          "problem_id": "2021-FIN-Q6",
+          "topic": "Bayes' Rule",
+          "subtopics": ["Bayes' Rule", "Conditional Probability"],
+          "question_type": "Conceptual",
+          "difficulty": "Easy"
+        }
       ]
     },
     {
       "topicId": "random-variables",
       "label": "Random Variables and Distributions",
       "questions": [
-        "What is the difference between discrete and continuous random variables?",
-        "How do you derive the CDF from a PDF?",
-        "What does the area under a PDF represent?",
-        "How do you calculate the probability that a random variable falls within a specific range?"
+        {
+          "problem_id": "2023-MT-Q7",
+          "topic": "Random Variables",
+          "subtopics": [
+            "Random Variables",
+            "Discrete Random Variables",
+            "Continuous Random Variables",
+            "PMF",
+            "PDF",
+            "CDF"
+          ],
+          "question_type": "Conceptual",
+          "difficulty": "Medium"
+        },
+        {
+          "problem_id": "2024-FIN-Q3",
+          "topic": "Random Variables",
+          "subtopics": ["Expectation", "Variance", "Covariance"],
+          "question_type": "Computation",
+          "difficulty": "Hard"
+        }
       ]
     },
     {
       "topicId": "expectations",
       "label": "Expectations, Variance, and Covariance",
       "questions": [
-        "How do you calculate the expected value of a discrete random variable?",
-        "What is the relationship between variance and standard deviation?",
-        "How do you calculate the covariance between two random variables?",
-        "What does a positive covariance indicate about the relationship between two random variables?"
+        {
+          "problem_id": "2022-FIN-Q8",
+          "topic": "Expectations and Moments",
+          "subtopics": ["Expectation", "Moments"],
+          "question_type": "Computation",
+          "difficulty": "Medium"
+        },
+        {
+          "problem_id": "2021-MT-Q9",
+          "topic": "Covariance and Independence",
+          "subtopics": ["Covariance", "Independence"],
+          "question_type": "Conceptual",
+          "difficulty": "Easy"
+        }
       ]
     }
   ]
