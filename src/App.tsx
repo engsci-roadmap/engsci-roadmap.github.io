@@ -10,8 +10,6 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Terms from "./pages/Terms";
 import Contribute from "./pages/Contribute";
-import Majors from "./pages/Majors";
-import Internship from "./pages/Internship";
 import Y1F from "./pages/Y1F";
 import Y1W from "./pages/Y1W";
 import Y2F from "./pages/Y2F";
@@ -50,9 +48,6 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/contribute" element={<Contribute />} />
-            <Route path="/majors" element={<Majors />} />
-            <Route path="/majors/:majorId" element={<Majors />} />
-            <Route path="/internships" element={<Internship />} />
             <Route path="/y1f" element={<Y1F />} />
             <Route path="/y1w" element={<Y1W />} />
             <Route path="/y2f" element={<Y2F />} />
