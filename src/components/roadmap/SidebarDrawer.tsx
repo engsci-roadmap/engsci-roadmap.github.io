@@ -1,10 +1,11 @@
+import { ReactNode } from "react";
 import { FiX } from "react-icons/fi";
 
 type SidebarDrawerProps = {
   isOpen: boolean;
   onClose: () => void;
   topic: string;
-  questions: string[];
+  questions: ReactNode[];
 };
 
 const SidebarDrawer = ({
@@ -51,30 +52,24 @@ const SidebarDrawer = ({
           </div>
 
           <div className="flex-grow">
-            <div className="bg-blue-50 p-5 rounded-lg mb-6">
-              <h3 className="text-xl md:text-2xl font-semibold mb-4 text-blue-800">
-                Practice Questions
-              </h3>
-              {questions && questions.length > 0 ? (
-                <ol className="list-decimal pl-6 space-y-5">
-                  {questions.map((question, index) => (
-                    <li key={index} className="text-gray-800 text-lg">
-                      <div className="p-4 bg-white rounded-md shadow-sm border border-blue-100">
-                        {question}
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-              ) : (
-                <div className="p-4 bg-white rounded-md shadow-sm border border-blue-100">
-                  <p className="text-gray-600">
-                    No practice questions available for this topic.
-                  </p>
-                </div>
-              )}
-            </div>
+            <h3 className="text-xl md:text-2xl font-semibold mb-4 text-blue-800">
+              Practice Questions
+            </h3>
+            {questions && questions.length > 0 ? (
+              <ol className="list-decimal ml-5 mt-2 text-gray-700 text-sm space-y-2">
+                {questions.map((question, index) => (
+                  <li key={index} className="pl-1">
+                    {question}
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <p className="text-gray-600">
+                No practice questions available for this topic.
+              </p>
+            )}
 
-            <div className="mt-auto text-center pt-4 border-t border-gray-200">
+            <div className="mt-6 text-center pt-4 border-t border-gray-200">
               <p className="text-sm text-gray-600">
                 Click on another topic in the graph to see more questions
               </p>

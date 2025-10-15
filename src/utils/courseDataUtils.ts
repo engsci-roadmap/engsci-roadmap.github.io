@@ -2,6 +2,8 @@ import {
   GraphNode,
   GraphEdge,
 } from "../components/roadmap/CourseDependencyGraph";
+import { transformQuestions, NewQuestion } from "./questionUtils";
+import { ReactNode } from "react";
 
 type GraphData = {
   nodes: GraphNode[];
@@ -11,7 +13,7 @@ type GraphData = {
 type ProblemData = {
   topicId: string;
   label?: string;
-  questions: string[];
+  questions: NewQuestion[];
 };
 
 type ProblemCollection = {
@@ -27,17 +29,16 @@ type ProblemCollection = {
  */
 export const mergeCourseData = (
   roadmapData: GraphData,
-  problemsData: ProblemCollection
+  problemsData: ProblemCollection,
+  courseCode?: string
 ): GraphData => {
   // Create maps for quick lookups
-  const questionsMap = new Map<string, string[]>();
-  const labelsMap = new Map<string, string>();
+  const questionsMap = new Map<string, ReactNode[]>();
 
   problemsData.problems.forEach((problem: ProblemData) => {
-    questionsMap.set(problem.topicId, problem.questions);
-    if (problem.label) {
-      labelsMap.set(problem.topicId, problem.label);
-    }
+    const rendered = transformQuestions(problem.questions, { courseCode });
+    questionsMap.set(problem.topicId, rendered);
+    // label handling is done by consumers; no per-topic label map needed
   });
 
   // Enhance nodes with questions from the problems data
@@ -69,11 +70,12 @@ export const mergeCourseData = (
  * @returns An array of problems with topic ID, label and questions
  */
 export const getProblemsData = (
-  problemsData: ProblemCollection
-): ProblemData[] => {
+  problemsData: ProblemCollection,
+  courseCode?: string
+): { topicId: string; label: string; questions: ReactNode[] }[] => {
   return problemsData.problems.map((problem) => ({
     topicId: problem.topicId,
-    label: problem.label || problem.topicId, // Use topicId as fallback if label is missing
-    questions: problem.questions,
+    label: problem.label || problem.topicId,
+    questions: transformQuestions(problem.questions, { courseCode }),
   }));
 };

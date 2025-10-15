@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { getProblemsData } from "../../utils/courseDataUtils";
 import { FaArrowLeft } from "react-icons/fa";
@@ -6,7 +6,7 @@ import { FaArrowLeft } from "react-icons/fa";
 type TopicWithQuestions = {
   topicId: string;
   label: string;
-  questions: string[];
+  questions: ReactNode[];
 };
 
 interface CourseProblemsProps {
@@ -31,9 +31,8 @@ const CourseProblems = ({ courseCode, semester }: CourseProblemsProps) => {
           throw new Error(`No problems found for ${courseCode}`);
         });
 
-        const problems = getProblemsData(problemsModule.default);
-        // Cast problems to ensure all items have a label string
-        setTopics(problems as TopicWithQuestions[]);
+        const problems = getProblemsData(problemsModule.default, courseCode);
+        setTopics(problems);
       } catch (err) {
         console.error("Error loading problems:", err);
         setError(
